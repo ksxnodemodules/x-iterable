@@ -2,7 +2,7 @@
 ((module) => {
 	'use strict';
 
-	var createClassFromPrototype = require('class-utils').createClass;
+	var createClassFromPrototype = require('simple-class-utils').createClass;
 
 	var _key_iterator = Symbol.iterator;
 
