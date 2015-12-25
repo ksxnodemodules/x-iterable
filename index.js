@@ -3,7 +3,9 @@
 	'use strict';
 
 	module.exports = {
-		createClass: require('./create-class.js')
+		DeepIterable: require('./deep-iterable.js'),
+		createClass: require('./create-class.js'),
+		utils: require('./utils')
 	};
 
 })(module);
