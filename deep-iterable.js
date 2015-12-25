@@ -2,7 +2,7 @@
 ((module) => {
 	'use strict';
 
-	var createClass = require('./create-class.js').createClass;
+	var createClass = require('./create-class.js');
 	var isIterable = require('./utils/is-iterable.js');
 
 	var _key_iterator = Symbol.iterator;
