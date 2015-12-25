@@ -78,7 +78,22 @@
 
 	createClass.default = createClassFromPrototype.super.handleArgs.packer(Set);
 
-	createClass.fromGenerator = (gen, ...args) =>
-		createClass(createClassFromPrototype({[_key_iterator]: gen}, ...args));
+	createClass.fromGenerator = (gen) => {
+
+		var _key_args = Symbol('args');
+
+		return createClass(class {
+
+			constructor(...args) {
+				this[_key_args] = args;
+			}
+
+			* [_key_iterator]() {
+				yield * gen.call(this, ...this[_key_args]);
+			}
+
+		});
+
+	}
 
 })(module);
