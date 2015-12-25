@@ -87,7 +87,7 @@
 			}
 
 			* [_key_iterator]() {
-				yield * gen(...this[_key_args], this);
+				yield * gen.call(this, ...this[_key_args]);
 			}
 
 		});
