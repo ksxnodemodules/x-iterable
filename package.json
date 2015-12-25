@@ -1,0 +1,33 @@
+
+{
+	"name": "x-iterable",
+	"description": "Extensible Iterable class creation utilities",
+	"version": "0.0.0",
+	"author": "Hoàng Văn Khải <hvksmr1996@gmail.com>",
+	"contributors": [
+		"Hoàng Văn Khải <hvksmr1996@gmail.com>"
+	],
+	"license": "MIT",
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/ksxnodemodules/x-iterable.git"
+	},
+	"engines": {
+		"node": ">=4.9.0"
+	},
+	"dependencies": {
+		"simple-class-utils": "<2.0.0"
+	},
+	"files": [
+		"index.js"
+	],
+	"main": "index.js",
+	"keywords": [
+		"iterator",
+		"iterable",
+		"x-iterator",
+		"x-iterable",
+		"extensible-iterator",
+		"extensible-iterable"
+	]
+}
