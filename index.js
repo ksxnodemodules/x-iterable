@@ -70,13 +70,13 @@
 
 		((proto) => {
 			proto.Array = Array;
-		})(XIterable.proto);
+		})(XIterable.prototype);
 
 		return XIterable;
 
 	}
 
-	createClass.default = Set;
+	createClass.default = createClassFromPrototype.super.handleArgs.packer(Set);
 
 	createClass.fromGenerator = (gen, ...args) =>
 		createClass(createClassFromPrototype({[_key_iterator]: gen}, ...args));

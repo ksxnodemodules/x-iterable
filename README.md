@@ -1,6 +1,11 @@
 
 # Extensible Iterable class utilities
 
+## Requirements
+
+Node v5.0.0 or later
+ - Flags `--es--staging` is required
+
 ## Examples
 
 ### Create an iterable class
