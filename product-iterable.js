@@ -13,14 +13,12 @@
 
 		constructor(iterable, ...rest) {
 
-			if (!isIterable(iterable)) {
-				throw new TypeError(`Parameter 'iterable' must be an iterable`);
-			}
+			super();
 
 			if (!rest.length) {
 				return {
 					* [_key_iterator]() {
-						for (let element in iterable) {
+						for (let element of iterable) {
 							yield new ProductIterable.Result(element);
 						}
 					}
@@ -35,12 +33,24 @@
 		* [_key_iterator]() {
 			for (let i of this.first) {
 				for (let j of this.second) {
-					yield new ProductIterable.Result(element);
+					yield new ProductIterable.Result(i, ...j);
 				}
 			}
 		}
 
-		static createXIterable(Iterable, ...Rest) {}
+		static createXIterable(...classes) {
+			return createClass(class extends ProductIterable.createXIterable.Root {
+
+				constructor(...args) {
+					this.args = args;
+				}
+
+				* [_key_iterator]() {
+
+				}
+
+			});
+		}
 
 	}
 
