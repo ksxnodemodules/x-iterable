@@ -13,7 +13,7 @@
 		constructor(base, deeper) {
 			super();
 			this.base = base;
-			this.deeper = typeof deeper === 'function' ? deeper : isIterable;
+			this.deeper = typeof deeper === 'function' ? deeper : DeepIterable.DEFAULT_DEEPER;
 		}
 
 		* [_key_iterator]() {
@@ -42,6 +42,10 @@
 
 			};
 
+		}
+
+		static DEFAULT_DEEPER(object) {
+			return typeof object === 'object' && isIterable(object);
 		}
 
 	}
