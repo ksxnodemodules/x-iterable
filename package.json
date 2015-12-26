@@ -18,7 +18,11 @@
 		"simple-class-utils": "<2.0.0"
 	},
 	"files": [
-		"index.js"
+		"index.js",
+		"create-class.js",
+		"deep-iterable.js",
+		"root.js",
+		"utils/"
 	],
 	"main": "index.js",
 	"keywords": [

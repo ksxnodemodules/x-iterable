@@ -4,10 +4,11 @@
 
 	var createClass = require('./create-class.js');
 	var isIterable = require('./utils/is-iterable.js');
+	var Root = require('./root.js').class;
 
 	var _key_iterator = Symbol.iterator;
 
-	class DeepIterable {
+	class DeepIterable extends Root {
 
 		constructor(base, deeper) {
 			this.base = base;

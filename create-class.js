@@ -2,7 +2,7 @@
 ((module) => {
 	'use strict';
 
-	var createClassFromPrototype = require('simple-class-utils').createClass;
+	var Root = require('./root.js').class;
 
 	var _key_iterator = Symbol.iterator;
 
@@ -74,7 +74,7 @@
 
 	}
 
-	createClass.default = createClassFromPrototype.super.handleArgs.packer(Set);
+	createClass.default = Root.IterableBased;
 
 	createClass.fromGenerator = (gen) => {
 
