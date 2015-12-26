@@ -1,3 +1,3 @@
 
 module.exports = (iterable) =>
-	typeof iterable[Symbol.iterator] === 'function';
+	iterable !== undefined && iterable !== null && typeof iterable[Symbol.iterator] === 'function';
