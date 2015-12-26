@@ -97,6 +97,6 @@
 
 	}
 
-	createClass.fromGenerator.Base = createClassFromSuper(Root, {setproto: true});
+	createClass.fromGenerator.Base = createClassFromSuper(Root);
 
 })(module);
