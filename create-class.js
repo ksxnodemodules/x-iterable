@@ -10,7 +10,7 @@
 
 	module.exports = createClass;
 
-	function createClass(Super) {
+	function createClass(Super, ...args) {
 
 		class XIterable extends (typeof Super === 'function' ? Super : createClass.default) {
 
@@ -72,13 +72,13 @@
 			proto.Array = Array;
 		})(XIterable.prototype);
 
-		return XIterable;
+		return createClassFromSuper(XIterable, ...args);
 
 	}
 
 	createClass.default = Root.IterableBased;
 
-	createClass.fromGenerator = (gen) => {
+	createClass.fromGenerator = (gen, ...args) => {
 
 		var _key_args = Symbol('args');
 
@@ -93,10 +93,10 @@
 				yield * gen.call(this, ...this[_key_args]);
 			}
 
-		});
+		}, ...args);
 
 	}
 
-	createClass.fromGenerator.Base = createClassFromSuper(Root);
+	createClass.fromGenerator.Base = createClassFromSuper(Root, {setproto: true});
 
 })(module);
