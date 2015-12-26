@@ -4,7 +4,8 @@ function main() {
 
 	return {
 		'x-iterable': require('./x-iterable'),
-		'deep-iterable': require('./deep-iterable')
+		'deep-iterable': require('./deep-iterable'),
+		'product-iterable': require('./product-iterable')
 	}
 
 }
