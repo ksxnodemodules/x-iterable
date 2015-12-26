@@ -40,5 +40,6 @@
 	"homepage": "https://github.com/ksxnodemodules/x-iterable#readme",
 	"scripts": {
 		"test": "node --es-staging ./*.js"
-	}
+	},
+	"tonicExampleFileName": "./test/index.js"
 }
