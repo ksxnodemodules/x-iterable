@@ -50,8 +50,6 @@
 
 	}
 
-	module.exports = DeepIterable;
-
-	DeepIterable.XIterable = createClass(DeepIterable);
+	module.exports = createClass(DeepIterable);
 
 })(module);
