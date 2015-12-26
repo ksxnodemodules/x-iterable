@@ -80,9 +80,10 @@
 
 		var _key_args = Symbol('args');
 
-		return createClass(class {
+		return createClass(class extends Root {
 
 			constructor(...args) {
+				super();
 				this[_key_args] = args;
 			}
 
