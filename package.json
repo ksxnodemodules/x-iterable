@@ -39,6 +39,6 @@
 	},
 	"homepage": "https://github.com/ksxnodemodules/x-iterable#readme",
 	"scripts": {
-		"test": "tap test/index.js"
+		"test": "node --es-staging ./*.js"
 	}
 }
