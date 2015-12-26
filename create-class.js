@@ -2,6 +2,8 @@
 ((module) => {
 	'use strict';
 
+	var createClassFromSuper = require('simple-class-utils').createClass.super;
+
 	var Root = require('./root.js').class;
 
 	var _key_iterator = Symbol.iterator;
@@ -80,7 +82,7 @@
 
 		var _key_args = Symbol('args');
 
-		return createClass(class extends Root {
+		return createClass(class extends createClass.fromGenerator.Base {
 
 			constructor(...args) {
 				super();
@@ -94,5 +96,7 @@
 		});
 
 	}
+
+	createClass.fromGenerator.Base = createClassFromSuper(Root);
 
 })(module);
