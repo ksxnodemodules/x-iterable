@@ -22,7 +22,8 @@
 		"create-class.js",
 		"deep-iterable.js",
 		"root.js",
-		"utils/"
+		"utils/",
+		"test/"
 	],
 	"main": "index.js",
 	"keywords": [
@@ -38,6 +39,6 @@
 	},
 	"homepage": "https://github.com/ksxnodemodules/x-iterable#readme",
 	"scripts": {
-		"test": "echo \"Error: no test specified\" && exit 1"
+		"test": "tap test/index.js"
 	}
 }
