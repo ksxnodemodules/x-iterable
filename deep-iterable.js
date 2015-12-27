@@ -48,6 +48,11 @@
 			return typeof object === 'object' && isIterable(object);
 		}
 
+		static get CIRCULAR_DEEPER() {
+			var all = new Set();
+			return (object) => !all.has(object) && all.add(object);
+		}
+
 	}
 
 	module.exports = createClass(DeepIterable);
