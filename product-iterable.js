@@ -4,6 +4,7 @@
 
 	var createClassFromSuper = require('simple-class-utils').createClass.super;
 	var createClass = require('./create-class.js');
+	var ParallelIterable = require('./parallel-iterable.js');
 	var isIterable = require('./utils/is-iterable.js');
 	var Root = require('./root.js').class;
 	var recursiveConstructor = require('./utils/recursive-constructor.js');
@@ -25,15 +26,17 @@
 			}
 		}
 
-		static createXIterable(...classes) {
-			return createClass(class extends ProductIterable.createXIterable.Root {
+		static createXIterableClass(...classes) {
+			return createClass(class extends ProductIterable.createXIterableClass.Root {
 
 				constructor(...args) {
-					this.args = args;
+					super();
+					this.iterables = new ParallelIterable(ParallelIterable.END_OF_FIRST, classes, args)
+						.map((build, args) => new build(...args));
 				}
 
 				* [_key_iterator]() {
-
+					yield * new ProductIterable(...this.iterables);
 				}
 
 			});
@@ -45,6 +48,6 @@
 
 	ProductIterable.Result = createClassFromSuper(Array);
 
-	ProductIterable.createXIterable.Root = createClassFromSuper(Root);
+	ProductIterable.createXIterableClass.Root = createClassFromSuper(Root);
 
 })(module);
