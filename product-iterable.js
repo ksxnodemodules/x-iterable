@@ -6,28 +6,15 @@
 	var createClass = require('./create-class.js');
 	var isIterable = require('./utils/is-iterable.js');
 	var Root = require('./root.js').class;
+	var recursiveConstructor = require('./utils/recursive-constructor.js');
 
 	var _key_iterator = Symbol.iterator;
 
 	class ProductIterable extends Root {
 
-		constructor(iterable, ...rest) {
-
+		constructor(...args) {
 			super();
-
-			if (!rest.length) {
-				return {
-					* [_key_iterator]() {
-						for (let element of iterable) {
-							yield new ProductIterable.Result(element);
-						}
-					}
-				};
-			}
-
-			this.first = iterable;
-			this.second = new ProductIterable(...rest);
-
+			return recursiveConstructor(this, this.constructor, ...args);
 		}
 
 		* [_key_iterator]() {
