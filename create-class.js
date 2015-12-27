@@ -82,7 +82,7 @@
 
 		var _key_args = Symbol('args');
 
-		return createClass(class extends createClass.fromGenerator.Base {
+		return createClass(class extends createClass.fromGenerator.Root {
 
 			constructor(...args) {
 				super();
@@ -97,6 +97,6 @@
 
 	}
 
-	createClass.fromGenerator.Base = createClassFromSuper(Root);
+	createClass.fromGenerator.Root = createClassFromSuper(Root);
 
 })(module);
