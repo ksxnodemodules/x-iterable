@@ -30,9 +30,7 @@
 		}
 
 		static createXIterableClass(Base, deeper) {
-
 			return createClassFromSuper(DeepIterable, (...args) => [new Base(...args), deeper]);
-
 		}
 
 		static DEFAULT_DEEPER(object) {
