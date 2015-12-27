@@ -19,7 +19,7 @@
 		* [_key_iterator]() {
 			var deeper = this.deeper;
 			var base = this.base;
-			if (deeper(base)) {
+			if (deeper(base, this)) {
 				for (let element of base) {
 					yield * new DeepIterable(element, deeper);
 				}
