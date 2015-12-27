@@ -14,11 +14,14 @@
 		object.first = iterable;
 		object.second = new type(...rest);
 
+		return object;
+
 	};
 
 	class LastItem extends Root {
 
 		constructor(iterable, type) {
+			super();
 			this.iterable = iterable;
 		}
 
