@@ -14,7 +14,7 @@
 
 		constructor(...args) {
 			super();
-			return recursiveConstructor(this, this.constructor, ...args);
+			return recursiveConstructor(this, ProductIterable, ...args);
 		}
 
 		* [_key_iterator]() {
