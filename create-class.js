@@ -3,7 +3,6 @@
 	'use strict';
 
 	var createClassFromSuper = require('simple-class-utils').createClass.super;
-
 	var Root = require('./root.js').class;
 
 	var _key_iterator = Symbol.iterator;
