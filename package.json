@@ -1,7 +1,7 @@
 {
 	"name": "x-iterable",
 	"description": "Extensible Iterable class creation utilities",
-	"version": "1.1.0",
+	"version": "1.1.1",
 	"author": "Hoàng Văn Khải <hvksmr1996@gmail.com>",
 	"contributors": [
 		"Hoàng Văn Khải <hvksmr1996@gmail.com>"
@@ -12,7 +12,7 @@
 		"url": "git+https://github.com/ksxnodemodules/x-iterable.git"
 	},
 	"engines": {
-		"node": ">=5.0.1"
+		"node": ">=5.0.0"
 	},
 	"dependencies": {
 		"simple-class-utils": ">=0.0.4 <2.0.0"
