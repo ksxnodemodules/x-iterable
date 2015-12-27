@@ -2,18 +2,15 @@
 ((module) => {
 	'use strict';
 
+	var createClassFromSuper = require('simple-class-utils').createClass.super;
 	var createClass = require('./create-class.js');
 	var Root = require('./root.js').class;
-	var recursiveConstructor = require('./utils/recursive-constructor.js');
 
 	var _key_iterator = Symbol.iterator;
 
 	class ParallelIterable extends Root {
 
 		constructor(stop, ...iterables) {
-			if (typeof stop !== 'function') {
-				throw new TypeError(`Parameter 'stop' must be a function`);
-			}
 			super();
 			this.stop = stop;
 			this.iterables = iterables;
@@ -31,6 +28,22 @@
 			}
 		}
 
+		static createXIterableClass(stop, ...classes) {
+			return createClass(class extends ParallelIterable.createXIterableClass.Root {
+
+				constructor(...args) {
+					super();
+					this.stop = stop;
+					this.iterables = parallelConstructor(classes, args);
+				}
+
+				* [_key_iterator]() {
+					yield * new ParallelIterable(this.stop, ...this.iterables);
+				}
+
+			});
+		}
+
 		static END_OF_FIRST(elements) {
 			return elements[0].done;
 		}
@@ -45,6 +58,10 @@
 
 	}
 
-	module.exports = ParallelIterable;
+	module.exports = createClass(ParallelIterable);
+
+	ParallelIterable.createXIterableClass.Root = createClassFromSuper(Root);
+
+	var parallelConstructor = require('./utils/parallel-constructor.js');
 
 })(module);
