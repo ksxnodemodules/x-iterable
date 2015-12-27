@@ -20,7 +20,7 @@
 		* [_key_iterator]() {
 			var deeper = this.deeper;
 			var base = this.base;
-			if (deeper(base, this)) {
+			if (isIterable(base) && deeper(base, this)) {
 				for (let element of base) {
 					yield * new DeepIterable(element, deeper);
 				}
@@ -34,7 +34,7 @@
 		}
 
 		static DEFAULT_DEEPER(object) {
-			return typeof object === 'object' && isIterable(object);
+			return typeof object === 'object';
 		}
 
 		static get CIRCULAR_DEEPER() {
