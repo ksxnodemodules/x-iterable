@@ -32,11 +32,11 @@
 
 				constructor(...args) {
 					super();
-					this.iterables = parallelConstructor(classes, args);
+					this.iterables = new ProductIterable(...parallelConstructor(classes, args));
 				}
 
 				* [_key_iterator]() {
-					yield * new ProductIterable(...this.iterables);
+					yield * this.iterables;
 				}
 
 			});

@@ -10,7 +10,7 @@ function main() {
 	var args = [
 		[0, 1, 2, 3, 4, 5],
 		[Infinity],
-		"Hello, World!!"
+		["Hello, World!!"]
 	];
 
 	return {
