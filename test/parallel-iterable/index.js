@@ -13,7 +13,8 @@ function main() {
 
 	return {
 		'test-args': args,
-		'example': new TestResult(ParallelIterable, args)
+		'example': new TestResult(ParallelIterable, args),
+		'create-x-iterable-class': require('./create-x-iterable-class.js')
 	};
 
 }

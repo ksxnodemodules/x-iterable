@@ -8,6 +8,7 @@
 	var isIterable = require('./utils/is-iterable.js');
 	var Root = require('./root.js').class;
 	var recursiveConstructor = require('./utils/recursive-constructor.js');
+	var parallelConstructor = require('./utils/parallel-constructor.js');
 
 	var _key_iterator = Symbol.iterator;
 
@@ -31,8 +32,7 @@
 
 				constructor(...args) {
 					super();
-					this.iterables = new ParallelIterable(ParallelIterable.END_OF_FIRST, classes, args)
-						.map((build, args) => new build(...args));
+					this.iterables = parallelConstructor(classes, args);
 				}
 
 				* [_key_iterator]() {
