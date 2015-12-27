@@ -2,6 +2,7 @@
 ((module) => {
 	'use strict';
 
+	var createClassFromSuper = require('simple-class-utils').createClass.super.handleArgs;
 	var createClass = require('./create-class.js');
 	var isIterable = require('./utils/is-iterable.js');
 	var Root = require('./root.js').class;
@@ -28,19 +29,9 @@
 			}
 		}
 
-		static createXIterable(Base, deeper) {
+		static createXIterableClass(Base, deeper) {
 
-			return class extends createClass(Base) {
-
-				constructor(...args) {
-					super(...args);
-				}
-
-				* [_key_iterator]() {
-					yield * new DeepIterable(this, deeper);
-				}
-
-			};
+			return createClassFromSuper(DeepIterable, (...args) => [new Base(...args), deeper]);
 
 		}
 
