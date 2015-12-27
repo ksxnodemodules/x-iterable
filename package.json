@@ -12,7 +12,7 @@
 		"url": "git+https://github.com/ksxnodemodules/x-iterable.git"
 	},
 	"engines": {
-		"node": ">=5.0.0"
+		"node": ">=5.0.1"
 	},
 	"dependencies": {
 		"simple-class-utils": ">=0.0.4 <2.0.0"
@@ -39,7 +39,7 @@
 	},
 	"homepage": "https://github.com/ksxnodemodules/x-iterable#readme",
 	"scripts": {
-		"test": "node --es-staging ./*.js"
+		"test": "node --es-staging ./test/index.js"
 	},
 	"tonicExampleFileName": "./test/index.js"
 }
