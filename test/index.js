@@ -4,9 +4,10 @@ function main() {
 
 	return {
 		'x-iterable': require('./x-iterable'),
+		'concat-iterable': require('./concat-iterable'),
 		'deep-iterable': require('./deep-iterable'),
-		'product-iterable': require('./product-iterable'),
 		'parallel-iterable': require('./parallel-iterable'),
+		'product-iterable': require('./product-iterable'),
 		'main-module': require('..')
 	}
 
