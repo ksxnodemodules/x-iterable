@@ -17,6 +17,10 @@
 			return mostMatrix(callback, this, init);
 		}
 
+		static times(...args) {
+			return ProductIterable.pow(...args);
+		}
+
 		static pow(iterable, exponent) {
 			exponent = parseInt(exponent);
 			if (exponent < 0) {
