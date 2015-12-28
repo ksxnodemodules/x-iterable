@@ -9,10 +9,6 @@
 
 	class ProductIterable extends ProductIterableSuper {
 
-		constructor(...args) {
-			super(...args);
-		}
-
 		most(callback, init) {
 			return mostMatrix(callback, this, init);
 		}

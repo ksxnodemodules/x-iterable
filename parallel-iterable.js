@@ -12,10 +12,6 @@
 
 	class ParallelIterable extends ParallelIterableSuper {
 
-		constructor(...args) {
-			super(...args);
-		}
-
 		most(callback, init) {
 			return mostMatrix(callback, this, init);
 		}
