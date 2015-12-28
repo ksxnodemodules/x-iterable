@@ -8,6 +8,10 @@
 
 	class ConcatIterable extends ConcatIterableSuper {
 
+		static times(...args) {
+			return ConcatIterable.multiply(...args);
+		}
+
 		static multiply(iterable, times) {
 			var args = manySameElements(iterable, times);
 			return args.length ? new ConcatIterable(...args) : [];
