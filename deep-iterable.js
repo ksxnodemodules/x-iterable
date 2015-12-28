@@ -46,6 +46,6 @@
 
 	module.exports = createClass(DeepIterable);
 
-	DeepIterable.DEFAULT_DEEPER = OBJECT_DEEPER;
+	DeepIterable.DEFAULT_DEEPER = DeepIterable.OBJECT_DEEPER;
 
 })(module);

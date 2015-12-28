@@ -5,6 +5,7 @@
 	var createClassFromSuper = require('simple-class-utils').createClass.super;
 	var recursiveConstructor = require('./utils/recursive-constructor.js');
 	var ProductIterableSuper = require('./utils/appx-super-class.js')(build, iterate);
+	var mostMatrix = require('./utils/most-matrix.js');
 
 	class ProductIterable extends ProductIterableSuper {
 
@@ -13,14 +14,7 @@
 		}
 
 		most(callback, init) {
-			for (let subset of this) {
-				for (let element of subset) {
-					if (callback(element, init)) {
-						init = element;
-					}
-				}
-			}
-			return init;
+			return mostMatrix(callback, this, init);
 		}
 
 	}
