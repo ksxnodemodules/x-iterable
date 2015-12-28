@@ -5,43 +5,14 @@
 	var createClassFromSuper = require('simple-class-utils').createClass.super;
 	var createClass = require('./create-class.js');
 	var Root = require('./root.js').class;
+	var ParallelIterableSuper = require('./utils/appx-super-class.js')(build, iterate);
 
 	var _key_iterator = Symbol.iterator;
 
-	class ParallelIterable extends Root {
+	class ParallelIterable extends ParallelIterableSuper {
 
-		constructor(stop, ...iterables) {
-			super();
-			this.stop = stop;
-			this.iterables = iterables;
-		}
-
-		* [_key_iterator]() {
-			var iterators = this.iterables.map((iterable) => iterable[_key_iterator]());
-			for ( ; ; ) {
-				var elements = iterators.map((iterator) => iterator.next());
-				if (this.stop(elements)) {
-					break;
-				} else {
-					yield elements.map((element) => element.value);
-				}
-			}
-		}
-
-		static createXIterableClass(stop, ...classes) {
-			return createClass(class extends ParallelIterable.createXIterableClass.Root {
-
-				constructor(...args) {
-					super();
-					this.stop = stop;
-					this.iterables = parallelConstructor(classes, args);
-				}
-
-				* [_key_iterator]() {
-					yield * new ParallelIterable(this.stop, ...this.iterables);
-				}
-
-			});
+		constructor(...args) {
+			super(...args);
 		}
 
 		static END_OF_FIRST(elements) {
@@ -56,12 +27,46 @@
 			return elements.every((element) => element.done);
 		}
 
+		static createXIterableClass(stop, ...classes) {
+
+			var parallelConstructor = require('./utils/parallel-constructor.js');
+
+			return createClass(class extends ParallelIterable.createXIterableClass.Root {
+
+				constructor(...args) {
+					super();
+					this.base = new ParallelIterable(stop, ...parallelConstructor(classes, args));
+				}
+
+				* [_key_iterator]() {
+					yield * this.base;
+				}
+
+			});
+
+		}
+
 	}
 
-	module.exports = createClass(ParallelIterable);
+	module.exports = ParallelIterable;
 
 	ParallelIterable.createXIterableClass.Root = createClassFromSuper(Root);
 
-	var parallelConstructor = require('./utils/parallel-constructor.js');
+	function build(self, stop, ...iterables) {
+		self.stop = stop;
+		self.iterables = iterables;
+	}
+
+	function * iterate() {
+		var iterators = this.iterables.map((iterable) => iterable[_key_iterator]());
+		for ( ; ; ) {
+			var elements = iterators.map((iterator) => iterator.next());
+			if (this.stop(elements)) {
+				break;
+			} else {
+				yield elements.map((element) => element.value);
+			}
+		}
+	}
 
 })(module);
