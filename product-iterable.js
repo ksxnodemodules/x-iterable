@@ -5,7 +5,7 @@
 	var createClassFromSuper = require('simple-class-utils').createClass.super;
 	var recursiveConstructor = require('./utils/recursive-constructor.js');
 	var ProductIterableSuper = require('./utils/appx-super-class.js')(build, iterate);
-	var manySameElement = require('./utils/many-same-elements.js');
+	var manySameElements = require('./utils/many-same-elements.js');
 	var mostMatrix = require('./utils/most-matrix.js');
 
 	class ProductIterable extends ProductIterableSuper {
@@ -19,7 +19,7 @@
 		}
 
 		static pow(iterable, exponent) {
-			var args = manySameElement(iterable, exponent);
+			var args = manySameElements(iterable, exponent);
 			return args.length ? new ProductIterable(...args) : [];
 		}
 
