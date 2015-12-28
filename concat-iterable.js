@@ -22,7 +22,7 @@
 	module.exports = ConcatIterable;
 
 	function build(self, ...args) {
-		return recursiveConstructor(self, ConcatIterable, ...args);
+		return recursiveConstructor(self, ConcatIterable, (value) => value, ...args);
 	}
 
 	function * iterate() {

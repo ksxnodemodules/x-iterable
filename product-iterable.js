@@ -30,7 +30,7 @@
 	ProductIterable.Result = createClassFromSuper(Array);
 
 	function build(self, ...args) {
-		return recursiveConstructor(self, ProductIterable, ...args);
+		return recursiveConstructor(self, ProductIterable, (value) => [value], ...args);
 	}
 
 	function * iterate() {
