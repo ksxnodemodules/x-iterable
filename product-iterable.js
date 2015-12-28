@@ -17,6 +17,21 @@
 			return mostMatrix(callback, this, init);
 		}
 
+		static pow(iterable, exponent) {
+			exponent = parseInt(exponent);
+			if (exponent < 0) {
+				throw new RangeError(`Parameter 'exponent' is invalid`);
+			}
+			if (!exponent) {
+				return new ProductIterable([]);
+			}
+			var args = [];
+			for ( ; exponent; --exponent) {
+				args.push(iterable);
+			}
+			return new ProductIterable(...args);
+		}
+
 	}
 
 	module.exports = ProductIterable;
