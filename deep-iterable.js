@@ -33,7 +33,7 @@
 			return createClassFromSuper(DeepIterable, (...args) => [new Base(...args), deeper]);
 		}
 
-		static DEFAULT_DEEPER(object) {
+		static OBJECT_DEEPER(object) {
 			return typeof object === 'object';
 		}
 
@@ -45,5 +45,7 @@
 	}
 
 	module.exports = createClass(DeepIterable);
+
+	DeepIterable.DEFAULT_DEEPER = OBJECT_DEEPER;
 
 })(module);
