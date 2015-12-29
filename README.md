@@ -34,7 +34,7 @@ for (let element of iterable) {
 
 ```javascript
 var SubSet = require('x-iterable').createClass(Set);
-var set = new SubSet(12, 3, -5, 6, 88, 1);
+var set = new SubSet([12, 3, -5, 6, 88, 1]);
 console.log({
 	min: set.min,
 	max: set.max
