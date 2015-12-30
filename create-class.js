@@ -53,16 +53,16 @@
 				return init;
 			}
 
-			toArray() {
-				return this.Array.from(this);
-			}
-
 			get min() {
 				return this.most((challenger, champion) => challenger < champion, +Infinity);
 			}
 
 			get max() {
 				return this.most((challenger, champion) => challenger > champion, -Infinity);
+			}
+
+			toArray() {
+				return this.Array.from(this);
 			}
 
 		}
