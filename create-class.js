@@ -65,6 +65,14 @@
 				return this.Array.from(this);
 			}
 
+			find(callback) {
+				for (let element of this) {
+					if (callback(element, this)) {
+						return element;
+					}
+				}
+			}
+
 			search(callback) {
 				for (let element of this) {
 					if (callback(element, this)) {
@@ -78,9 +86,9 @@
 		((proto) => {
 			proto.Array = Array;
 			proto.search.Result = class extends Root {
-				constructor(element, iterable) {
-					this.element = element;
-					this.iterable = iterable;
+				constructor(value, object) {
+					this.value = value;
+					this.object = object;
 				}
 			};
 			var superproto = Object.getPrototypeOf(proto);
