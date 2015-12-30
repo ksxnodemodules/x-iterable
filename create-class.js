@@ -54,7 +54,7 @@
 			}
 
 			toArray() {
-				return Array.from(this);
+				return this.Array.from(this);
 			}
 
 			get min() {
