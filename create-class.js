@@ -13,10 +13,6 @@
 
 		class XIterable extends (typeof Super === 'function' ? Super : createClass.default) {
 
-			constructor(...args) {
-				super(...args);
-			}
-
 			forEach(callback) {
 				for (let element of this) {
 					callback(element, this);
