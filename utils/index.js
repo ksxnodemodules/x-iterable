@@ -5,5 +5,6 @@ module.exports = {
 	manySameElements: require('./many-same-elements.js'),
 	mostMatrix: require('./most-matrix.js'),
 	parallelConstructor: require('./parallel-constructor.js'),
-	recursiveConstructor: require('./recursive-constructor.js')
+	recursiveConstructor: require('./recursive-constructor.js'),
+	transformIterable: require('./transform-iterable.js')
 };
