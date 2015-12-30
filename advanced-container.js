@@ -15,7 +15,7 @@
 
 			Container = createClass(Container);
 
-			class AdvSet extends AdvancedContainerTemplate.Set.Root {
+			class AdvSet extends this.Set.Root {
 
 				constructor(...args) {
 					super();
@@ -63,6 +63,10 @@
 		Map(Container, equal) {
 
 			Container = createClass(Container);
+
+			class AdvMap extends this.Map.Root {
+				
+			}
 
 		}
 
