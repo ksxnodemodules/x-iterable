@@ -65,10 +65,24 @@
 				return this.Array.from(this);
 			}
 
+			search(callback) {
+				for (let element of this) {
+					if (callback(element, this)) {
+						return new this.search.Result(element, this);
+					}
+				}
+			}
+
 		}
 
 		((proto) => {
 			proto.Array = Array;
+			proto.search.Result = class extends Root {
+				constructor(element, iterable) {
+					this.element = element;
+					this.iterable = iterable;
+				}
+			};
 			var superproto = Object.getPrototypeOf(proto);
 			makeMethodExists('join', function (...args) {
 				return this.toArray().join(...args);
