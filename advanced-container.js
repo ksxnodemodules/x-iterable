@@ -39,8 +39,12 @@
 				}
 
 				add(value) {
-					this.has(value) && this.container.add(new AdvSet.Element(value));
+					this.has(value) || this.container.add(new AdvSet.Element(value));
 					return this;
+				}
+
+				delete(value) {
+					
 				}
 
 				clear() {
@@ -61,6 +65,8 @@
 		}
 
 		Map(Container, equal) {
+
+			Container = createClass(Container);
 
 		}
 
