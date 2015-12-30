@@ -4,7 +4,9 @@
 
 	var _key_iterator = Symbol.iterator;
 
-	return function * (iterable, transform) {
+	module.exports = transformIterable;
+
+	function * transformIterable(iterable, transform) {
 
 		var iterate = iterable[_key_iterator];
 		var iterator = typeof iterate === 'function' ? iterate.call(iterable) : iterable;
