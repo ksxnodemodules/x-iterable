@@ -40,3 +40,6 @@ console.log({
 	max: set.max
 });
 ```
+
+## Documentation: User Manual, API References
+https://github.com/ksxnodemodules/x-iterable-documentation
