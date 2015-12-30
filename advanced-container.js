@@ -43,10 +43,6 @@
 					return this;
 				}
 
-				delete(value) {
-					
-				}
-
 				clear() {
 					this.container.clear();
 					return this;
@@ -80,6 +76,15 @@
 
 		values() {
 			return transformIterable(this.entries(), (entry) => entry.value);
+		}
+
+		delete(value) {
+			var position = this.findPositionOf(value);
+			if (position) {
+				this.container.delete(position);
+				return true;
+			}
+			return false;
 		}
 
 	};
