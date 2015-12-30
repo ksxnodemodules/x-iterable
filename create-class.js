@@ -53,6 +53,10 @@
 				return init;
 			}
 
+			toArray() {
+				return Array.from(this);
+			}
+
 			get min() {
 				return this.most((challenger, champion) => challenger < champion, +Infinity);
 			}
@@ -65,6 +69,15 @@
 
 		((proto) => {
 			proto.Array = Array;
+			var superproto = Object.getPrototypeOf(proto);
+			makeMethodExists('join', function (...args) {
+				return this.toArray().join(...args);
+			});
+			function makeMethodExists(fname, func) {
+				if (typeof superproto[fname] !== 'function') {
+					proto[fname] = func;
+				}
+			}
 		})(XIterable.prototype);
 
 		return createClassFromSuper(XIterable, ...args);
