@@ -66,37 +66,36 @@
 
 	}
 
+	class Container extends Root {
+
+		keys() {
+			return transformIterable(this.entries(), (entry) => entry.key);
+		}
+
+		values() {
+			return transformIterable(this.entries(), (entry) => entry.value);
+		}
+
+	};
+
 	module.exports = new AdvancedContainerTemplate();
 
-	var SupRoot = AdvancedContainerTemplate.Root = createClassFromSuper(Root);
+	var SupRoot = AdvancedContainerTemplate.Root = createClassFromSuper(Container);
 	var SupElement = AdvancedContainerTemplate.Element = createClassFromSuper(Root);
+
 	((proto) => {
 
-		var SubRoot = proto.Root = class extends SupRoot {
-
-			keys() {
-				return transformIterable(this.entries(), (entry) => entry.key);
-			}
-
-			values() {
-				return transformIterable(this.entries(), (entry) => entry.value);
-			}
-			
-		};
-
+		var SubRoot = proto.Root = createClassFromSuper(SupRoot);
 		proto.Set.Root = createClassFromSuper(SubRoot);
-
 		proto.Map.Root = createClassFromSuper(SubRoot);
 
 		var SubElement = proto.Element = createClassFromSuper(SupElement);
-
 		proto.Set.Element = class extends SubElement {
 			constructor(value) {
 				super();
 				this.value = value;
 			}
 		};
-
 		proto.Map.Element = class extends SubElement {
 			constructor(key, value) {
 				super();
