@@ -42,4 +42,4 @@ console.log({
 ```
 
 ## Documentation: User Manual, API References
-https://github.com/ksxnodemodules/x-iterable-documentation
+ - [Documentation](https://github.com/ksxnodemodules/x-iterable-documentation)
