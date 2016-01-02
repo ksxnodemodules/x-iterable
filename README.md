@@ -10,7 +10,7 @@ Node v5.0.0 or later
 
 ### Create an iterable class
 
- - Function: `createClass`
+ - Function: [`createClass`](https://github.com/ksxnodemodules/x-iterable-documentation/blob/master/references/create-class/readme.md)
 
  - Usage: `createClass(optional class Super)`
 
