@@ -30,7 +30,7 @@ for (let element of iterable) {
 
  - Method: `get Iterable::max`, `get Iterable::min`
 
-*They're two applications of method [`XIterable::most`](https://github.com/ksxnodemodules/x-iterable-documentation/blob/master/references/create-class/x-iterable.md)*
+*They're two applications of method [`XIterable::most`](https://github.com/ksxnodemodules/x-iterable-documentation/blob/master/references/create-class/x-iterable.md#method-most)*
 
 ```javascript
 var SubSet = require('x-iterable').createClass(Set);
