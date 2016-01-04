@@ -46,7 +46,7 @@
 
 			most(callback, init) {
 				for (let element of this) {
-					if (callback(element, init)) {
+					if (callback(element, init, this)) {
 						init = element;
 					}
 				}
