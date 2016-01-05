@@ -15,8 +15,6 @@ Node v5.0.0 or later
  - Function: [`createClass`](https://github.com/ksxnodemodules/x-iterable-documentation/blob/master/references/create-class/readme.md)
 
  - Usage: `createClass(optional class Super)`
-  - `Super` is an iterable class which has a method named `[Symbol.iterator]`
-  - Return value: a class which is subclass of `Super`, and some utility methods (e.g. `::forEach`, `::map`, etc.)
 
 ```javascript
 var createClass = require('x-iterable/create-class');
@@ -31,8 +29,6 @@ console.log(strlist);
  - Function: [`createClass.fromGenerator`](https://github.com/ksxnodemodules/x-iterable-documentation/blob/master/references/create-class/readme.md#function-createclassfromgenerator)
 
  - Usage: `createClass.fromGenerator(function generator)`
-  - `generator` is a [javascript generator](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Iterators_and_Generators#Generators)
-  - Return value: an iterable class
 
 ```javascript
 var createClass = require('x-iterable/create-class');
