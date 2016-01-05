@@ -6,20 +6,39 @@
 Node v5.0.0 or later
  - Flag `--es-staging` is required
 
-## Examples
+## Some examples
 
-### Create an iterable class
+ * Read [documentation](https://github.com/ksxnodemodules/x-iterable-documentation) for more examples
+
+### Create an extended iterable class based an iterable class
 
  - Function: [`createClass`](https://github.com/ksxnodemodules/x-iterable-documentation/blob/master/references/create-class/readme.md)
 
  - Usage: `createClass(optional class Super)`
+  - `Super` is an iterable class which has a method named `[Symbol.iterator]`
+  - Return value: a class which is subclass of `Super`, and some utility methods (e.g. `::forEach`, `::map`, etc.)
 
 ```javascript
-var createClass = require('x-iterable').createClass;
-var base = createClass.fromGenerator(function * () {
+var createClass = require('x-iterable/create-class');
+var Iterable = createClass(Array);
+var iterable = new Iterable(12, -4, 5, 66, 4);
+var strlist = iterable.map(String);
+console.log(strlist);
+```
+
+### Create an iterable class based on generator
+
+ - Function: [`createClass.fromGenerator`](https://github.com/ksxnodemodules/x-iterable-documentation/blob/master/references/create-class/readme.md#function-createclassfromgenerator)
+
+ - Usage: `createClass.fromGenerator(function generator)`
+  - `generator` is a [javascript generator](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Iterators_and_Generators#Generators)
+  - Return value: an iterable class
+
+```javascript
+var createClass = require('x-iterable/create-class');
+var Iterable = createClass.fromGenerator(function * () {
 	yield * "Hello, World!!";
 });
-var Iterable = createClass(base);
 var iterable = new Iterable();
 for (let element of iterable) {
 	console.log(element); // display each character of "Hello, World!!"
