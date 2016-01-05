@@ -108,24 +108,15 @@
 
 	createClass.default = Root.IterableBased;
 
-	createClass.fromGenerator = (gen, ...args) => {
-
-		var _key_args = Symbol('args');
-
-		return createClass(class extends createClass.fromGenerator.Root {
-
+	createClass.fromGenerator = (gen, ...args) =>
+		createClass(class extends createClass.fromGenerator.Root {
 			constructor(...args) {
 				super();
-				this[_key_args] = args;
+				var base = gen.apply(this, args);
+				this[_key_iterator] = () => base;
 			}
-
-			* [_key_iterator]() {
-				yield * gen.call(this, ...this[_key_args]);
-			}
-
 		}, ...args);
 
-	}
 
 	createClass.fromGenerator.Root = createClassFromSuper(Root);
 
