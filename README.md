@@ -18,8 +18,8 @@ Node v5.0.0 or later
 
 ```javascript
 var createClass = require('x-iterable/create-class');
-var Iterable = createClass(Array);
-var iterable = new Iterable(12, -4, 5, 66, 4);
+var Iterable = createClass(Set);
+var iterable = new Iterable([12, -4, 5, 66, 4]);
 var strlist = iterable.map(String);
 console.log(strlist);
 ```
