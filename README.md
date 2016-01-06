@@ -18,7 +18,7 @@ Node v5.0.0 or later
 
 ```javascript
 var createClass = require('x-iterable/create-class');
-var Iterable = createClass(Set);
+var Iterable = createClass(Int8Array);
 var iterable = new Iterable([12, -4, 5, 66, 4]);
 var strlist = iterable.map(String);
 console.log(strlist);
