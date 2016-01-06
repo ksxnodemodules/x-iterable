@@ -120,4 +120,8 @@
 
 	createClass.fromGenerator.Root = createClassFromSuper(Root);
 
+	createClass.Yield = createClass.fromGenerator(function * (base) {
+		yield * base;
+	});
+
 })(module);
