@@ -49,6 +49,22 @@
 				return init;
 			}
 
+			sumAsNum() {
+				return this.reduce((prev, now) => prev + now, 0);
+			}
+
+			productAsNum() {
+				return this.reduce((prev, now) => prev * now, 1);
+			}
+
+			sumAsStr() {
+				return this.reduce((prev, now) => prev + now, '');
+			}
+
+			sumAsReservedStr() {
+				return this.reduce((prev, now) => now + prev, '');
+			}
+
 			most(callback, init) {
 				for (let element of this) {
 					if (callback(element, init, this)) {
