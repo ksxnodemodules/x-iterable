@@ -10,7 +10,7 @@ Node v5.0.0 or later
 
  * Read [documentation](https://github.com/ksxnodemodules/x-iterable-documentation) for more examples
 
-### Create an extended iterable class based an iterable class
+### Create an extended iterable class based on an iterable class
 
  - Function: [`createClass`](https://github.com/ksxnodemodules/x-iterable-documentation/blob/master/references/create-class/readme.md)
 
