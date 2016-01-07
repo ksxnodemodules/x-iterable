@@ -45,7 +45,7 @@
 			}
 
 			reduce(callback, init) {
-				this.forEach((element) => init = callback(init, element, this));
+				this.forEach((element) => {init = callback(init, element, this)});
 				return init;
 			}
 
@@ -117,8 +117,7 @@
 		createClass(class extends createClass.fromGenerator.Root {
 			constructor(...args) {
 				super();
-				var base = gen.apply(this, args);
-				this[_key_iterator] = () => base;
+				this[_key_iterator] = (...rest) => gen.call(this, ...args, ...rest);
 			}
 		}, ...args);
 
