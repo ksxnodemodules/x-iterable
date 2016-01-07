@@ -42,6 +42,10 @@
 			return (object) => !all.has(object) && all.add(object);
 		}
 
+		static LENGTHINESS_DEEPER(lengthiness) {
+			return lengthiness.length > 1;
+		}
+
 	}
 
 	module.exports = createClass(DeepIterable);
