@@ -44,6 +44,11 @@
 				return result;
 			}
 
+			reduce(callback, init) {
+				this.forEach((element) => init = callback(init, element, this));
+				return init;
+			}
+
 			most(callback, init) {
 				for (let element of this) {
 					if (callback(element, init, this)) {
