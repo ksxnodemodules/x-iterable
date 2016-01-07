@@ -49,20 +49,20 @@
 				return init;
 			}
 
-			sumAsNum() {
+			get sumAsNum() {
 				return this.reduce((prev, now) => prev + now, 0);
 			}
 
-			productAsNum() {
+			get productAsNum() {
 				return this.reduce((prev, now) => prev * now, 1);
 			}
 
-			sumAsStr() {
-				return this.reduce((prev, now) => prev + now, '');
+			get sumAsStr() {
+				return this.reduce((prev, now) => prev + String(now), '');
 			}
 
-			sumAsReservedStr() {
-				return this.reduce((prev, now) => now + prev, '');
+			get sumAsReservedStr() {
+				return this.reduce((prev, now) => String(now) + prev, '');
 			}
 
 			most(callback, init) {
