@@ -49,6 +49,10 @@
 			return typeof string === 'string' ? string.length > 1 : true;
 		}
 
+		static CHAR_DEEPER(string) {
+			return typeof string === 'string' ? string.length !== 1 : true;
+		}
+
 		static LENGTHINESS_DEEPER(lengthiness) {
 			return lengthiness.length > 1;
 		}
