@@ -45,11 +45,6 @@
 			return typeof object === 'object';
 		}
 
-		static get CIRCULAR_DEEPER() {
-			var all = new Set();
-			return (object) => !all.has(object) && all.add(object);
-		}
-
 		static LENGTHINESS_DEEPER(lengthiness) {
 			return lengthiness.length > 1;
 		}
