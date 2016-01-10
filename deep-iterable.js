@@ -7,6 +7,8 @@
 	var isIterable = require('./utils/is-iterable.js');
 	var Root = require('./root.js').class;
 
+	const EMPTY_GENERATOR = require('./utils/empty-iterable.js').EMPTY_GENERATOR;
+
 	var _key_iterator = Symbol.iterator;
 
 	class DeepIterable extends Root {
@@ -80,7 +82,7 @@
 			function * iterate(base, deeper, equal) {
 				if (isIterable(base) && deeper(base, this)) {
 					if (parents.find((element) => equal(base, element))) {
-						yield circular(base, this);
+						yield * circular(base, this) || EMPTY_GENERATOR;
 					} else {
 						parents.push(base);
 						for (let element of base) {
