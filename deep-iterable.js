@@ -46,11 +46,11 @@
 		}
 
 		static STRING_DEEPER(string) {
-			return typeof string === 'string' ? string.length > 1 : true;
+			return typeof string !== 'string' || string.length > 1;
 		}
 
 		static CHAR_DEEPER(string) {
-			return typeof string === 'string' ? string.length !== 1 : true;
+			return typeof string !== 'string' || string.length !== 1;
 		}
 
 		static LENGTHINESS_DEEPER(lengthiness) {
