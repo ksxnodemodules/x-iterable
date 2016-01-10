@@ -28,6 +28,10 @@
 			return elements.every((element) => element.done);
 		}
 
+		static FOR_COUNT(count) {
+			return (elements) => count--;
+		}
+
 		static createXIterableClass(stop, ...classes) {
 
 			var parallelConstructor = require('./utils/parallel-constructor.js');
