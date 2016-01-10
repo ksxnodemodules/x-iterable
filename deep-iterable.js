@@ -29,8 +29,16 @@
 			}
 		}
 
+		circular(equal) {
+			return new DeepIterable.Circular(this.base, this.deeper, equal);
+		}
+
 		static createXIterableClass(Base, deeper) {
 			return createClassFromSuper(DeepIterable, (...args) => [new Base(...args), deeper]);
+		}
+
+		static ANY_DEEPER(iterable) {
+			return true;
 		}
 
 		static OBJECT_DEEPER(object) {
@@ -51,5 +59,42 @@
 	module.exports = createClass(DeepIterable);
 
 	DeepIterable.DEFAULT_DEEPER = DeepIterable.OBJECT_DEEPER;
+
+	DeepIterable.Circular = createClass(class extends Root {
+
+		constructor(base, deeper, equal, circular) {
+			super();
+			this.base = base;
+			this.deeper = typeof deeper === 'function' ? deeper : DeepIterable.DEFAULT_DEEPER;
+			this.equal = typeof equal === 'function' ? equal : Object.is;
+			this.circular = typeof circular === 'function' ? circular : DeepIterable.Circular.DEFAULT_CIRCULAR_HANDLER;
+		}
+
+		[Symbol.iterator]() {
+			var parents = [];
+			var circular = this.circular;
+			return iterate(this.base, this.deeper, this.equal);
+			function * iterate(base, deeper, equal) {
+				if (isIterable(base) && deeper(base, this)) {
+					if (parents.find((element) => equal(base, element))) {
+						yield circular(base, this);
+					} else {
+						parents.push(base);
+						for (let element of base) {
+							yield * iterate(element, deeper, equal);
+						}
+						parents.pop();
+					}
+				} else {
+					yield base;
+				}
+			}
+		}
+
+		static DEFAULT_CIRCULAR_HANDLER(object) {
+			return object;
+		}
+
+	});
 
 })(module);
