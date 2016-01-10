@@ -29,7 +29,7 @@
 		}
 
 		static FOR_COUNT(count) {
-			return (elements) => count--;
+			return (elements) => !(count--);
 		}
 
 		static createXIterableClass(stop, ...classes) {
