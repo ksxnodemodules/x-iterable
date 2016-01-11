@@ -10,10 +10,6 @@
 
 	class ProductIterable extends ProductIterableSuper {
 
-		most(callback, init) {
-			return mostMatrix(callback, this, init);
-		}
-
 		static times(...args) {
 			return ProductIterable.pow(...args);
 		}
