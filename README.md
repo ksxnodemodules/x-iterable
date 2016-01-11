@@ -86,6 +86,8 @@ console.log(Array.from(parallel));
 
 ### For `require('x-iterable/product-iterable')`
 
+#### Iterate all combinations of many iterables
+
 Get a sequence of all `[A[i], B[j], C[k], ...]` where `A`, `B`, `C`, ... are iterable
 
 ```javascript
