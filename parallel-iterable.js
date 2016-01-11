@@ -66,7 +66,7 @@
 		var iterators = this.iterables.map((iterable) => iterable[_key_iterator]());
 		for ( ; ; ) {
 			var elements = iterators.map((iterator) => iterator.next());
-			if (this.stop(elements)) {
+			if (this.stop(elements, this)) {
 				break;
 			} else {
 				yield elements.map((element) => element.value);
