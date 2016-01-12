@@ -20,7 +20,10 @@
 	"files": [
 		"index.js",
 		"create-class.js",
+		"concat-iterable.js",
 		"deep-iterable.js",
+		"parallel-iterable.js",
+		"product-iterable.js",
 		"root.js",
 		"utils/",
 		"test/"
