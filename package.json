@@ -1,7 +1,7 @@
 {
 	"name": "x-iterable",
 	"description": "Extensible Iterable class creation utilities",
-	"version": "2.0.0",
+	"version": "2.0.1",
 	"author": "Hoàng Văn Khải <hvksmr1996@gmail.com>",
 	"contributors": [
 		"Hoàng Văn Khải <hvksmr1996@gmail.com>"
@@ -17,17 +17,6 @@
 	"dependencies": {
 		"simple-class-utils": ">=0.0.4 <2.0.0"
 	},
-	"files": [
-		"index.js",
-		"create-class.js",
-		"concat-iterable.js",
-		"deep-iterable.js",
-		"parallel-iterable.js",
-		"product-iterable.js",
-		"root.js",
-		"utils/",
-		"test/"
-	],
 	"main": "index.js",
 	"keywords": [
 		"iterator",
