@@ -6,15 +6,10 @@
 	var createClass = require('./create-class.js');
 	var Root = require('./root.js').class;
 	var ParallelIterableSuper = require('./utils/appx-super-class.js')(build, iterate);
-	var mostMatrix = require('./utils/most-matrix');
 
 	var _key_iterator = Symbol.iterator;
 
 	class ParallelIterable extends ParallelIterableSuper {
-
-		most(callback, init) {
-			return mostMatrix(callback, this, init);
-		}
 
 		static END_OF_FIRST(elements) {
 			return elements[0].done;
