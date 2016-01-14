@@ -50,11 +50,11 @@
 			}
 
 			get sumAsNum() {
-				return this.reduce((prev, now) => prev + now, 0);
+				return this.reduce((prev, now) => prev + Number(now), 0);
 			}
 
 			get productAsNum() {
-				return this.reduce((prev, now) => prev * now, 1);
+				return this.reduce((prev, now) => prev * Number(now), 1);
 			}
 
 			get sumAsStr() {
