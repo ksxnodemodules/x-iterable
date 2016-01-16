@@ -13,6 +13,16 @@
 
 		class XIterable extends (typeof Super === 'function' ? Super : createClass.default) {
 
+			* transformGenerator(callback) {
+				for (let element of this) {
+					yield callback(element, this);
+				}
+			}
+
+			transform(callback) {
+				return new createClass.Yield(this.transformGenerator(callback));
+			}
+
 			forEach(callback) {
 				for (let element of this) {
 					callback(element, this);
@@ -20,9 +30,7 @@
 			}
 
 			map(callback) {
-				var result = new this.Array();
-				this.forEach((element) => result.push(callback(element, this)));
-				return result;
+				return Array.from(this.transform(callback));
 			}
 
 			some(callback) {
