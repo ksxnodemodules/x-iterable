@@ -76,13 +76,14 @@
 		}
 
 		[Symbol.iterator]() {
+			var self = this;
 			var parents = [];
-			var circular = this.circular;
-			return iterate(this.base, this.deeper, this.equal);
+			var circular = self.circular;
+			return iterate(self.base, self.deeper, self.equal);
 			function * iterate(base, deeper, equal) {
-				if (isIterable(base) && deeper(base, this)) {
+				if (isIterable(base) && deeper(base, self)) {
 					if (parents.find((element) => equal(base, element))) {
-						yield * circular(base, this) || EMPTY_GENERATOR;
+						yield * circular(base, self) || EMPTY_GENERATOR;
 					} else {
 						parents.push(base);
 						for (let element of base) {
