@@ -27,7 +27,7 @@
 		}
 
 		static times(...args) {
-			return SpreadIterable.deep(...args);
+			return this.deep(...args);
 		}
 
 		static deep(iterable, level) {
