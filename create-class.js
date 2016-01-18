@@ -30,7 +30,7 @@
 			}
 
 			map(callback) {
-				return Array.from(this.transform(callback));
+				return this.Array.from(this.transform(callback));
 			}
 
 			some(callback) {
@@ -55,6 +55,11 @@
 			reduce(callback, init) {
 				this.forEach((element) => {init = callback(init, element, this)});
 				return init;
+			}
+
+			spread(callback) {
+				var Result = this.Array;
+				return this.reduce((prev, now) => new Result(...prev, ...callback(now)), new Result());
 			}
 
 			get sumAsNum() {
