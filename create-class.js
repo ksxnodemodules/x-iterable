@@ -58,6 +58,9 @@
 			}
 
 			spread(callback) {
+				if (typeof callback !== 'function') {
+					callback = this.spread.DEFAULT_CALLBACK;
+				}
 				var Result = this.Array;
 				return this.reduce((prev, now) => new Result(...prev, ...callback(now, this)), new Result());
 			}
@@ -142,7 +145,7 @@
 					proto[fname] = func;
 				}
 			}
-			
+
 		})(XIterable.prototype);
 
 		return createClassFromSuper(XIterable, ...args);
