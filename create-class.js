@@ -125,6 +125,8 @@
 					this.object = object;
 				}
 			};
+			proto.spread.ITERABLES = (element, self) => new self.Array(...element);
+			proto.spread.DEFAULT_CALLBACK = proto.spread.ITERABLES;
 			var superproto = Object.getPrototypeOf(proto);
 			makeMethodExists('join', function (...args) {
 				return this.toArray().join(...args);
