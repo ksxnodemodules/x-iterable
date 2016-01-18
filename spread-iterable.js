@@ -31,7 +31,13 @@
 		}
 
 		static deep(iterable, level) {
-			return this.create(level ? this.deep(iterable, level - 1) : iterable);
+			if (!isFinite(level) || level < 0) {
+				throw new TypeError(`${level} is not a positive finite number`);
+			}
+			for (iterable = new createClass.Yield(iterable), level = parseInt(level); level; --level) {
+				iterable = new this(iterable);
+			}
+			return iterable;
 		}
 
 	}
