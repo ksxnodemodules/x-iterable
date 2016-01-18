@@ -10,6 +10,7 @@
 	class SpreadIterable extends Root {
 
 		constructor(iterable) {
+			super();
 			this.iterable = iterable;
 		}
 
