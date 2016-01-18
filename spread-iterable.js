@@ -44,9 +44,10 @@
 			var ParallelIterable = require('./parallel-iterable.js');
 			return createClassFromSuper.handleArgs(
 				this,
-				(...args) =>
+				(...args) => [
 					new ParallelIterable(ParallelIterable.END_OF_FIRST, Base, args)
 						.transform((element) => new element[0](...element[1]))
+				]
 			);
 		}
 
