@@ -59,7 +59,7 @@
 
 			spread(callback) {
 				var Result = this.Array;
-				return this.reduce((prev, now) => new Result(...prev, ...callback(now)), new Result());
+				return this.reduce((prev, now) => new Result(...prev, ...callback(now, this)), new Result());
 			}
 
 			get sumAsNum() {
