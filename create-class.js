@@ -118,24 +118,31 @@
 		}
 
 		((proto) => {
+
 			proto.Array = Array;
+
 			proto.search.Result = class extends Root {
 				constructor(value, object) {
 					this.value = value;
 					this.object = object;
 				}
 			};
+
 			proto.spread.ITERABLES = (element, self) => new self.Array(...element);
 			proto.spread.DEFAULT_CALLBACK = proto.spread.ITERABLES;
+
 			var superproto = Object.getPrototypeOf(proto);
+
 			makeMethodExists('join', function (...args) {
 				return this.toArray().join(...args);
 			});
+
 			function makeMethodExists(fname, func) {
 				if (typeof superproto[fname] !== 'function') {
 					proto[fname] = func;
 				}
 			}
+			
 		})(XIterable.prototype);
 
 		return createClassFromSuper(XIterable, ...args);
