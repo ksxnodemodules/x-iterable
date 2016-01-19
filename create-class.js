@@ -19,6 +19,10 @@
 				}
 			}
 
+			transformOnce(callback) {
+				return new createClass.Yield(this.transformGenerator(callback));
+			}
+
 			transform(callback) {
 				return new createClass.Yield(
 					new createClass.AssignIterator(() => this.transformGenerator(callback))
