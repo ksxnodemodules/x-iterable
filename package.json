@@ -1,7 +1,7 @@
 {
 	"name": "x-iterable",
 	"description": "Extensible Iterable class creation utilities",
-	"version": "2.2.1",
+	"version": "2.3.0",
 	"author": "Hoàng Văn Khải <hvksmr1996@gmail.com>",
 	"contributors": [
 		"Hoàng Văn Khải <hvksmr1996@gmail.com>"
