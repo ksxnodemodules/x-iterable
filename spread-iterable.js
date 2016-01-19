@@ -40,13 +40,15 @@
 			return iterable;
 		}
 
-		static createXIterableClass(...Base) {
+		static createXIterableClass(Iterable, ...Args) {
 			var ParallelIterable = require('./parallel-iterable.js');
 			return createClassFromSuper.handleArgs(
 				this,
 				(...args) => [
-					new ParallelIterable(ParallelIterable.END_OF_FIRST, Base, args)
-						.transform((element) => new element[0](...element[1]))
+					new Iterable(
+						...new ParallelIterable(ParallelIterable.END_OF_FIRST, Args, args)
+							.transform((element) => new element[0](...element[1]))
+					)
 				]
 			);
 		}
