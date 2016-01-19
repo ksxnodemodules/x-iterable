@@ -20,7 +20,9 @@
 			}
 
 			transform(callback) {
-				return new createClass.Yield(this.transformGenerator(callback));
+				return new createClass.Yield(
+					new createClass.AssignIterator(() => this.transformGenerator(callback))
+				);
 			}
 
 			forEach(callback) {
@@ -167,6 +169,13 @@
 
 	createClass.Yield = createClass.fromGenerator(function * (base) {
 		yield * base;
+	});
+
+	createClass.AssignIterator = createClass(class extends Root {
+		constructor(iterate) {
+			super();
+			this[_key_iterator] = iterate;
+		}
 	});
 
 })(module);
