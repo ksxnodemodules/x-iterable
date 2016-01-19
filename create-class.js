@@ -36,7 +36,7 @@
 			}
 
 			map(callback) {
-				return this.Array.from(this.transform(callback));
+				return this.Array.from(this.transformOnce(callback));
 			}
 
 			some(callback) {
