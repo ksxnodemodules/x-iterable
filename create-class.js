@@ -20,7 +20,9 @@
 			}
 
 			transform(callback) {
-				return new createClass.Yield(this.transformGenerator(callback));
+				return new createClass.Yield(
+					new createClass.AssignIterator(() => this.transformGenerator(callback))
+				);
 			}
 
 			forEach(callback) {
@@ -30,7 +32,7 @@
 			}
 
 			map(callback) {
-				return Array.from(this.transform(callback));
+				return this.Array.from(this.transform(callback));
 			}
 
 			some(callback) {
@@ -55,6 +57,14 @@
 			reduce(callback, init) {
 				this.forEach((element) => {init = callback(init, element, this)});
 				return init;
+			}
+
+			spread(callback) {
+				if (typeof callback !== 'function') {
+					callback = this.spread.DEFAULT_CALLBACK;
+				}
+				var Result = this.Array;
+				return this.reduce((prev, now) => new Result(...prev, ...callback(now, this)), new Result());
 			}
 
 			get sumAsNum() {
@@ -113,22 +123,31 @@
 		}
 
 		((proto) => {
+
 			proto.Array = Array;
+
 			proto.search.Result = class extends Root {
 				constructor(value, object) {
 					this.value = value;
 					this.object = object;
 				}
 			};
+
+			proto.spread.ITERABLES = (element, self) => new self.Array(...element);
+			proto.spread.DEFAULT_CALLBACK = proto.spread.ITERABLES;
+
 			var superproto = Object.getPrototypeOf(proto);
+
 			makeMethodExists('join', function (...args) {
 				return this.toArray().join(...args);
 			});
+
 			function makeMethodExists(fname, func) {
 				if (typeof superproto[fname] !== 'function') {
 					proto[fname] = func;
 				}
 			}
+
 		})(XIterable.prototype);
 
 		return createClassFromSuper(XIterable, ...args);
@@ -150,6 +169,13 @@
 
 	createClass.Yield = createClass.fromGenerator(function * (base) {
 		yield * base;
+	});
+
+	createClass.AssignIterator = createClass(class extends Root {
+		constructor(iterate) {
+			super();
+			this[_key_iterator] = iterate;
+		}
 	});
 
 })(module);
