@@ -8,6 +8,7 @@ function main() {
 		'deep-iterable': require('./deep-iterable'),
 		'parallel-iterable': require('./parallel-iterable'),
 		'product-iterable': require('./product-iterable'),
+		'spread-iterable': require('./spread-iterable'),
 		'main-module': require('..')
 	}
 

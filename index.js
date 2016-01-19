@@ -7,6 +7,7 @@
 		DeepIterable: require('./deep-iterable.js'),
 		ParallelIterable: require('./parallel-iterable.js'),
 		ProductIterable: require('./product-iterable.js'),
+		SpreadIterable: require('./spread-iterable.js'),
 		createClass: require('./create-class.js'),
 		root: require('./root.js'),
 		utils: require('./utils')
