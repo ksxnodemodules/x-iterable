@@ -78,7 +78,7 @@
 				.transform(transform);
 
 		var transform = (object) =>
-			object instanceof Value ? object : iterate(object);
+			object instanceof Value ? object.value : iterate(object);
 
 		class Value extends DeepIterable.PreProcessed.Value {};
 
