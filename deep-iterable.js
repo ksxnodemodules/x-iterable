@@ -64,10 +64,21 @@
 
 	}
 
-	module.exports = createClass(DeepIterable);
+	var Export = module.exports = createClass(DeepIterable);
 
 	DeepIterable.DEFAULT_DEEPER = DeepIterable.OBJECT_DEEPER;
 	DeepIterable.DEFAULT_SHALLOWER = (() => {});
+
+	DeepIterable.PreProcessed = class extends Export {
+
+		constructor(preprocess, ...args) {
+			super(...args);
+			this.preprocess = typeof preprocess === 'function' ? preprocess : DeepIterable.PreProcessed.DEFAULT_PREPROCESS;
+		}
+
+		
+
+	};
 
 	DeepIterable.Circular = createClass(class extends Root {
 
