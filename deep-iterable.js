@@ -13,10 +13,11 @@
 
 	class DeepIterable extends Root {
 
-		constructor(base, deeper) {
+		constructor(base, deeper, shallower) {
 			super();
 			this.base = base;
 			this.deeper = typeof deeper === 'function' ? deeper : DeepIterable.DEFAULT_DEEPER;
+			this.shallower = typeof shallower === 'function' ? shallower : DeepIterable.DEFAULT_SHALLOWER;
 		}
 
 		* [_key_iterator]() {
@@ -64,6 +65,7 @@
 	module.exports = createClass(DeepIterable);
 
 	DeepIterable.DEFAULT_DEEPER = DeepIterable.OBJECT_DEEPER;
+	DeepIterable.DEFAULT_SHALLOWER = (() => {});
 
 	DeepIterable.Circular = createClass(class extends Root {
 
