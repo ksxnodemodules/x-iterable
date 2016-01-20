@@ -7,7 +7,8 @@
 	var isIterable = require('./utils/is-iterable.js');
 	var Root = require('./root.js').class;
 
-	const EMPTY_GENERATOR = require('./utils/empty-iterable.js').EMPTY_GENERATOR;
+	const EMPTY_ITERABLE = require('./utils/empty-iterable.js');
+	const EMPTY_GENERATOR = EMPTY_ITERABLE.EMPTY_GENERATOR;
 
 	var _key_iterator = Symbol.iterator;
 
@@ -69,16 +70,15 @@
 	DeepIterable.DEFAULT_DEEPER = DeepIterable.OBJECT_DEEPER;
 	DeepIterable.DEFAULT_SHALLOWER = (() => {});
 
-	DeepIterable.PreProcessed = class extends Export {
+	DeepIterable.PreProcessed = createClass.fromGenerator((base, preprocess, ...args) => {
 
-		constructor(preprocess, ...args) {
-			super(...args);
-			this.preprocess = typeof preprocess === 'function' ? preprocess : DeepIterable.PreProcessed.DEFAULT_PREPROCESS;
-		}
+		var iterate = (object) =>
+			new Export(preprocess(object) || EMPTY_ITERABLE), ...args)
+				.transform(iterate);
 
-		
+		return iterate(base)[_key_iterator]();
 
-	};
+	});
 
 	DeepIterable.Circular = createClass(class extends Root {
 
