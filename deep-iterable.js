@@ -3,6 +3,7 @@
 	'use strict';
 
 	var createClassFromSuper = require('simple-class-utils').createClass.super.handleArgs;
+	var functionizeClass = require('simple-function-utils/functionize-class');
 	var createClass = require('./create-class.js');
 	var isIterable = require('./utils/is-iterable.js');
 	var Root = require('./root.js').class;
@@ -73,12 +74,32 @@
 	DeepIterable.PreProcessed = createClass.fromGenerator((base, preprocess, ...args) => {
 
 		var iterate = (object) =>
-			new Export((preprocess(object) || EMPTY_ITERABLE), ...args)
-				.transform(iterate);
+			new Export((preprocess(object, createValue) || EMPTY_ITERABLE), ...args)
+				.transform(transform);
+
+		var transform = (object) =>
+			object instanceof Value ? object : iterate(object);
+
+		class Value extends DeepIterable.PreProcessed.Value {};
+
+		var createValue = functionizeClass(Value);
 
 		return iterate(base)[_key_iterator]();
 
 	});
+
+	DeepIterable.PreProcessed.Value = class extends Root {
+
+		constructor(value) {
+			super();
+			this.value = value;
+		}
+
+		get valueOf() {
+			return () => this.value;
+		}
+
+	};
 
 	DeepIterable.Circular = createClass(class extends Root {
 
