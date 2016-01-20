@@ -23,11 +23,11 @@
 
 		static many(...args) {
 			return require('./concat-iterable.js')
-				.create(...args.map((iterable) => this.create(iterable)));
+				.create(...args.map((iterable) => Class.create(iterable)));
 		}
 
 		static times(...args) {
-			return this.deep(...args);
+			return Class.deep(...args);
 		}
 
 		static deep(iterable, level) {
@@ -35,7 +35,7 @@
 				throw new TypeError(`${level} is not a positive finite number`);
 			}
 			for (iterable = new createClass.Yield(iterable), level = parseInt(level); level; --level) {
-				iterable = new this(iterable);
+				iterable = new Class(iterable);
 			}
 			return iterable;
 		}
@@ -43,7 +43,7 @@
 		static createXIterableClass(Iterable, ...Args) {
 			var ParallelIterable = require('./parallel-iterable.js');
 			return createClassFromSuper.handleArgs(
-				this,
+				Class,
 				(...args) => [
 					new Iterable(
 						...new ParallelIterable(ParallelIterable.END_OF_FIRST, Args, args)
@@ -55,6 +55,6 @@
 
 	}
 
-	module.exports = createClass(SpreadIterable);
+	var Class = module.exports = createClass(SpreadIterable);
 
 })(module);
