@@ -23,10 +23,12 @@
 		* [_key_iterator]() {
 			var deeper = this.deeper;
 			var base = this.base;
+			var shallower = this.shallower;
 			if (isIterable(base) && deeper(base, this)) {
 				for (let element of base) {
-					yield * new DeepIterable(element, deeper);
+					yield * new DeepIterable(element, deeper, shallower);
 				}
+				shallower(base, this);
 			} else {
 				yield base;
 			}
