@@ -73,7 +73,7 @@
 	DeepIterable.PreProcessed = createClass.fromGenerator((base, preprocess, ...args) => {
 
 		var iterate = (object) =>
-			new Export(preprocess(object) || EMPTY_ITERABLE), ...args)
+			new Export((preprocess(object) || EMPTY_ITERABLE), ...args)
 				.transform(iterate);
 
 		return iterate(base)[_key_iterator]();
