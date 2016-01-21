@@ -9,6 +9,10 @@ function main() {
 	var array = [0, 1, 2, 3, 'abc', ['abcdef'], [[0, 1, 2]]];
 	array.push(array, [[array], array]);
 	array = [array, 'final', [array]];
+	var left = [Symbol('left')];
+	var right = [Symbol('right')];
+	left.push(right);
+	right.push(left);
 
 	var args = [
 		array,
