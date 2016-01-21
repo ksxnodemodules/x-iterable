@@ -73,7 +73,7 @@
 	DeepIterable.DEFAULT_SHALLOWER = () => {};
 	DeepIterable.DEFAULT_PREPROCESS = (x) => x;
 
-	DeepIterable.Circular = class extends Root {
+	DeepIterable.Circular = createClass(class extends Root {
 
 		constructor(base, deeper, equal, circular) {
 			super();
@@ -110,7 +110,7 @@
 			return EMPTY_ITERABLE;
 		}
 
-	};
+	});
 
 	var _getval = (type, first, ...second) =>
 		typeof first === type || !second.length ? first : _getval(type, ...second);
