@@ -3,6 +3,7 @@
 	'use strict';
 
 	var createClassFromSuper = require('simple-class-utils').createClass.super.handleArgs;
+	var compose = require('simple-function-utils/compose');
 	var createClass = require('./create-class.js');
 	var isIterable = require('./utils/is-iterable.js');
 	var Root = require('./root.js').class;
@@ -73,42 +74,16 @@
 	DeepIterable.DEFAULT_SHALLOWER = () => {};
 	DeepIterable.DEFAULT_PREPROCESS = (x) => x;
 
-	DeepIterable.Circular = createClass(class extends Root {
+	DeepIterable.Circular = class extends DeepIterable {
 
-		constructor(base, deeper, equal, circular) {
-			super();
-			this.base = base;
-			this.deeper = typeof deeper === 'function' ? deeper : DeepIterable.DEFAULT_DEEPER;
-			this.equal = typeof equal === 'function' ? equal : Object.is;
-			this.circular = typeof circular === 'function' ? circular : DeepIterable.Circular.DEFAULT_CIRCULAR_HANDLER;
+		constructor(base, deeper, equal, circular, ...args) {
+
+			deeper = compose();
+
 		}
 
-		[Symbol.iterator]() {
-			var self = this;
-			var parents = [];
-			var circular = self.circular;
-			return iterate(self.base, self.deeper, self.equal);
-			function * iterate(base, deeper, equal) {
-				if (isIterable(base) && deeper(base, self)) {
-					if (parents.find((element) => equal(base, element))) {
-						yield * circular(base, self) || EMPTY_GENERATOR;
-					} else {
-						parents.push(base);
-						for (let element of base) {
-							yield * iterate(element, deeper, equal);
-						}
-						parents.pop();
-					}
-				} else {
-					yield base;
-				}
-			}
-		}
+	}
 
-		static DEFAULT_CIRCULAR_HANDLER(object) {
-			return object;
-		}
-
-	});
+	// DEFAULT_CIRCULAR_HANDLER
 
 })(module);
