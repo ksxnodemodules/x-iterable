@@ -69,37 +69,8 @@
 	var Export = module.exports = createClass(DeepIterable);
 
 	DeepIterable.DEFAULT_DEEPER = DeepIterable.OBJECT_DEEPER;
-	DeepIterable.DEFAULT_SHALLOWER = (() => {});
-
-	DeepIterable.PreProcessed = createClass.fromGenerator((base, preprocess, ...args) => {
-
-		var iterate = (object) =>
-			new Export((preprocess(object, createValue) || EMPTY_ITERABLE), ...args)
-				.transform(transform);
-
-		var transform = (object) =>
-			object instanceof Value ? object.value : iterate(object);
-
-		class Value extends DeepIterable.PreProcessed.Value {};
-
-		var createValue = functionizeClass(Value);
-
-		return iterate(base)[_key_iterator]();
-
-	});
-
-	DeepIterable.PreProcessed.Value = class extends Root {
-
-		constructor(value) {
-			super();
-			this.value = value;
-		}
-
-		get valueOf() {
-			return () => this.value;
-		}
-
-	};
+	DeepIterable.DEFAULT_SHALLOWER = () => {};
+	DeepIterable.DEFAULT_PREPROCESS = (x) => x;
 
 	DeepIterable.Circular = createClass(class extends Root {
 
