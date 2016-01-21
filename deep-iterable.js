@@ -3,7 +3,6 @@
 	'use strict';
 
 	var createClassFromSuper = require('simple-class-utils').createClass.super.handleArgs;
-	var functionizeClass = require('simple-function-utils/functionize-class');
 	var createClass = require('./create-class.js');
 	var isIterable = require('./utils/is-iterable.js');
 	var Root = require('./root.js').class;
@@ -15,24 +14,26 @@
 
 	class DeepIterable extends Root {
 
-		constructor(base, deeper, shallower) {
+		constructor(base, deeper, shallower, preprocess) {
 			super();
 			this.base = base;
 			this.deeper = typeof deeper === 'function' ? deeper : DeepIterable.DEFAULT_DEEPER;
 			this.shallower = typeof shallower === 'function' ? shallower : DeepIterable.DEFAULT_SHALLOWER;
+			this.preprocess = typeof preprocess === 'function' ? preprocess : DeepIterable.DEFAULT_PREPROCESS;
 		}
 
 		* [_key_iterator]() {
 			var deeper = this.deeper;
-			var base = this.base;
 			var shallower = this.shallower;
-			if (isIterable(base) && deeper(base, this)) {
-				for (let element of base) {
+			var preprocess = this.preprocess;
+			var object = this.base;
+			if (isIterable(object) && deeper(object, this)) {
+				for (let element of object) {
 					yield * new DeepIterable(element, deeper, shallower);
 				}
-				shallower(base, this);
+				shallower(object, this);
 			} else {
-				yield base;
+				yield object;
 			}
 		}
 
