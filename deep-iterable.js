@@ -3,31 +3,37 @@
 	'use strict';
 
 	var createClassFromSuper = require('simple-class-utils').createClass.super.handleArgs;
+	var bind = require('simple-function-utils/bind').begin;
 	var createClass = require('./create-class.js');
 	var isIterable = require('./utils/is-iterable.js');
 	var Root = require('./root.js').class;
 
-	const EMPTY_GENERATOR = require('./utils/empty-iterable.js').EMPTY_GENERATOR;
+	const EMPTY_ITERABLE = require('./utils/empty-iterable.js');
 
 	var _key_iterator = Symbol.iterator;
 
 	class DeepIterable extends Root {
 
-		constructor(base, deeper) {
+		constructor(base, deeper, shallower, preprocess) {
 			super();
 			this.base = base;
-			this.deeper = typeof deeper === 'function' ? deeper : DeepIterable.DEFAULT_DEEPER;
+			this.deeper = _getfunc(deeper, DeepIterable.DEFAULT_DEEPER);
+			this.shallower = _getfunc(shallower, DeepIterable.DEFAULT_SHALLOWER);
+			this.preprocess = _getfunc(preprocess, DeepIterable.DEFAULT_PREPROCESS);
 		}
 
 		* [_key_iterator]() {
 			var deeper = this.deeper;
-			var base = this.base;
-			if (isIterable(base) && deeper(base, this)) {
-				for (let element of base) {
-					yield * new DeepIterable(element, deeper);
+			var shallower = this.shallower;
+			var preprocess = this.preprocess;
+			var iterable = preprocess(this.base, this);
+			if (isIterable(iterable) && deeper(iterable, this)) {
+				for (let element of iterable) {
+					yield * new DeepIterable(element, deeper, shallower, preprocess);
 				}
+				shallower(iterable, this);
 			} else {
-				yield base;
+				yield iterable;
 			}
 		}
 
@@ -61,46 +67,50 @@
 
 	}
 
-	module.exports = createClass(DeepIterable);
+	var Export = module.exports = createClass(DeepIterable);
 
 	DeepIterable.DEFAULT_DEEPER = DeepIterable.OBJECT_DEEPER;
+	DeepIterable.DEFAULT_SHALLOWER = () => {};
+	DeepIterable.DEFAULT_PREPROCESS = (x) => x;
 
 	DeepIterable.Circular = createClass(class extends Root {
 
 		constructor(base, deeper, equal, circular) {
 			super();
 			this.base = base;
-			this.deeper = typeof deeper === 'function' ? deeper : DeepIterable.DEFAULT_DEEPER;
-			this.equal = typeof equal === 'function' ? equal : Object.is;
-			this.circular = typeof circular === 'function' ? circular : DeepIterable.Circular.DEFAULT_CIRCULAR_HANDLER;
+			this.deeper = _getfunc(deeper, DeepIterable.DEFAULT_DEEPER);
+			this.equal = _getfunc(equal, Object.is);
+			this.circular = _getfunc(circular, DeepIterable.Circular.DEFAULT_CIRCULAR_HANDLER);
 		}
 
-		[Symbol.iterator]() {
-			var self = this;
-			var parents = [];
-			var circular = self.circular;
-			return iterate(self.base, self.deeper, self.equal);
-			function * iterate(base, deeper, equal) {
-				if (isIterable(base) && deeper(base, self)) {
-					if (parents.find((element) => equal(base, element))) {
-						yield * circular(base, self) || EMPTY_GENERATOR;
-					} else {
-						parents.push(base);
-						for (let element of base) {
-							yield * iterate(element, deeper, equal);
-						}
-						parents.pop();
-					}
-				} else {
-					yield base;
-				}
-			}
+		[_key_iterator]() {
+
+			var history = [];
+			var base = this.base;
+			var deeper = this.deeper;
+			var equal = this.equal;
+			var circular = this.circular;
+
+			return new DeepIterable(
+				base,
+				(iterable, ...args) =>
+					deeper(iterable, ...args) && history.push(iterable),
+				() =>
+					history.pop(),
+				(iterable, ...args) =>
+					history.some(bind(equal, iterable)) ?
+						circular(iterable, ...args) || EMPTY_ITERABLE : iterable
+			)[_key_iterator]();
+
 		}
 
-		static DEFAULT_CIRCULAR_HANDLER(object) {
-			return object;
-		}
+		static DEFAULT_CIRCULAR_HANDLER() {}
 
 	});
+
+	var _getval = (type, first, ...second) =>
+		typeof first === type || !second.length ? first : _getval(type, ...second);
+
+	var _getfunc = bind(_getval, 'function');
 
 })(module);
