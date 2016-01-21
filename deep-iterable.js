@@ -92,8 +92,17 @@
 			var circular = this.circular;
 			var duplicated = false;
 
-			return new DeepIterable(base, (iterable, self) => history.find())
-				[_key_iterator]();
+			return new DeepIterable(
+				base,
+				(iterable, ...args) =>
+					history.find(bind(equal, iterable)) ?
+						deeper(iterable, ...args) : (duplicated = true, false),
+				() =>
+					history.pop(),
+				(iterable) =>
+					duplicated ?
+						(duplicated = false, circular(iterable)) : iterable
+			)[_key_iterator]();
 
 		}
 
