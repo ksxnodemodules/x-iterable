@@ -117,24 +117,4 @@
 
 	var _getfunc = bind(_getval, 'function');
 
-	// DeepIterable.Circular = class extends DeepIterable {
-
-	// 	constructor(base, deeper, equal, circular) {
-
-	// 		var history = [];
-
-	// 		if (typeof circular !== 'function') {
-	// 			circular = DeepIterable.Circular.DEFAULT_CIRCULAR_HANDLER;
-	// 		}
-
-	// 		super(base, deeper, () => history.pop(), (iterable) => history.some(bind(equal, iterable)) ? circular(iterable) : iterable);
-
-	// 	}
-
-	// 	static DEFAULT_CIRCULAR_HANDLER() {
-	// 		return EMPTY_ITERABLE;
-	// 	}
-
-	// }
-
 })(module);
