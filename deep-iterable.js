@@ -90,25 +90,21 @@
 			var deeper = this.deeper;
 			var equal = this.equal;
 			var circular = this.circular;
-			var duplicated = false;
 
 			return new DeepIterable(
 				base,
 				(iterable, ...args) =>
-					history.find(bind(equal, iterable)) ?
-						(duplicated = true, false) : (history.push(iterable), deeper(iterable, ...args)),
+					deeper(iterable, ...args) && history.push(iterable),
 				() =>
 					history.pop(),
-				(iterable) =>
-					duplicated ?
-						(duplicated = false, circular(iterable)) : iterable
+				(iterable, ...args) =>
+					history.some(bind(equal, iterable)) ?
+						circular(iterable, ...args) || EMPTY_ITERABLE : iterable
 			)[_key_iterator]();
 
 		}
 
-		static DEFAULT_CIRCULAR_HANDLER() {
-			return EMPTY_ITERABLE;
-		}
+		static DEFAULT_CIRCULAR_HANDLER() {}
 
 	});
 
