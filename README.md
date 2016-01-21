@@ -100,6 +100,20 @@ var product = new ProductIterable(
 console.log(Array.from(product));
 ```
 
+### For `require('x-iterable/spread-iterable')`
+
+#### Iterate children of children of an iterable
+
+```javascript
+var SpreadIterable = require('x-iterable/spread-iterable');
+var grandchildren = new SpreadIterable([
+	[23, 54, 23, 64],
+	[11, 35, 66, 88],
+	[42, 36, 22, 14]
+]);
+console.log(Array.from(grandchildren));
+```
+
 ### For all
 
 #### Find min, max of an iterable
