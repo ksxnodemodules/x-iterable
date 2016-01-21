@@ -26,14 +26,14 @@
 			var deeper = this.deeper;
 			var shallower = this.shallower;
 			var preprocess = this.preprocess;
-			var object = this.base;
-			if (isIterable(object) && deeper(object, this)) {
-				for (let element of object) {
-					yield * new DeepIterable(element, deeper, shallower);
+			var iterable = preprocess(this.base, this);
+			if (isIterable(iterable) && deeper(iterable, this)) {
+				for (let element of iterable) {
+					yield * new DeepIterable(element, deeper, shallower, preprocess);
 				}
-				shallower(object, this);
+				shallower(iterable, this);
 			} else {
-				yield object;
+				yield iterable;
 			}
 		}
 
