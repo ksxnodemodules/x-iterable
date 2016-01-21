@@ -96,7 +96,7 @@
 				base,
 				(iterable, ...args) =>
 					history.find(bind(equal, iterable)) ?
-						(duplicated = true, false) : deeper(iterable, ...args),
+						(duplicated = true, false) : (history.push(iterable), deeper(iterable, ...args)),
 				() =>
 					history.pop(),
 				(iterable) =>
