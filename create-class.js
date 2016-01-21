@@ -29,6 +29,10 @@
 				);
 			}
 
+			runthrough() {
+				for (let element of this);
+			}
+
 			forEach(callback) {
 				for (let element of this) {
 					callback(element, this);
