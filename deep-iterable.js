@@ -83,6 +83,20 @@
 			this.circular = _getfunc(circular, DeepIterable.Circular.DEFAULT_CIRCULAR_HANDLER);
 		}
 
+		[_key_iterator]() {
+
+			var history = [];
+			var base = this.base;
+			var deeper = this.deeper;
+			var equal = this.equal;
+			var circular = this.circular;
+			var duplicated = false;
+
+			return new DeepIterable(base, (iterable, self) => history.find())
+				[_key_iterator]();
+
+		}
+
 		static DEFAULT_CIRCULAR_HANDLER() {
 			return EMPTY_ITERABLE;
 		}
