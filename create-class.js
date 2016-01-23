@@ -30,7 +30,7 @@
 			}
 
 			runthrough() {
-				for (let element of this);
+				for (let gen = this[_key_iterator](); !gen.next().done; );
 			}
 
 			forEach(callback) {
