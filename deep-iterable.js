@@ -4,6 +4,7 @@
 
 	var createClassFromSuper = require('simple-class-utils').createClass.super.handleArgs;
 	var bind = require('simple-function-utils/bind').begin;
+	var boolean = require('simple-function-utils/boolean');
 	var createClass = require('./create-class.js');
 	var isIterable = require('./utils/is-iterable.js');
 	var Root = require('./root.js').class;
@@ -12,14 +13,14 @@
 
 	var _key_iterator = Symbol.iterator;
 
-	class DeepIterable extends Root {
+	class PureDeepIterable extends createClass(Root) {
 
 		constructor(base, deeper, shallower, preprocess) {
 			super();
 			this.base = base;
-			this.deeper = _getfunc(deeper, DeepIterable.DEFAULT_DEEPER);
-			this.shallower = _getfunc(shallower, DeepIterable.DEFAULT_SHALLOWER);
-			this.preprocess = _getfunc(preprocess, DeepIterable.DEFAULT_PREPROCESS);
+			this.deeper = deeper;
+			this.shallower = shallower;
+			this.preprocess = preprocess;
 		}
 
 		* [_key_iterator]() {
@@ -27,14 +28,27 @@
 			var shallower = this.shallower;
 			var preprocess = this.preprocess;
 			var iterable = preprocess(this.base, this);
-			if (isIterable(iterable) && deeper(iterable, this)) {
+			if (deeper(iterable, this)) {
 				for (let element of iterable) {
-					yield * new DeepIterable(element, deeper, shallower, preprocess);
+					yield * new PureDeepIterable(element, deeper, shallower, preprocess);
 				}
 				shallower(iterable, this);
 			} else {
 				yield iterable;
 			}
+		}
+
+	}
+
+	class DeepIterable extends PureDeepIterable {
+
+		constructor(base, deeper, shallower, preprocess) {
+			super(
+				base,
+				boolean.and(isIterable, _getfunc(deeper, DeepIterable.DEFAULT_DEEPER)),
+				_getfunc(shallower, DeepIterable.DEFAULT_SHALLOWER),
+				_getfunc(preprocess, DeepIterable.DEFAULT_PREPROCESS)
+			);
 		}
 
 		circular(equal) {
@@ -67,7 +81,9 @@
 
 	}
 
-	var Export = module.exports = createClass(DeepIterable);
+	module.exports = class extends DeepIterable {};
+
+	DeepIterable.PureDeepIterable = DeepIterable.Pure = DeepIterable.Super = PureDeepIterable;
 
 	DeepIterable.DEFAULT_DEEPER = DeepIterable.OBJECT_DEEPER;
 	DeepIterable.DEFAULT_SHALLOWER = () => {};
