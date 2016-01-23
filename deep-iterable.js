@@ -83,7 +83,7 @@
 
 	module.exports = class extends DeepIterable {};
 
-	DeepIterable.PureDeepIterable = DeepIterable.Super = PureDeepIterable;
+	DeepIterable.PureDeepIterable = DeepIterable.Pure = DeepIterable.Super = PureDeepIterable;
 
 	DeepIterable.DEFAULT_DEEPER = DeepIterable.OBJECT_DEEPER;
 	DeepIterable.DEFAULT_SHALLOWER = () => {};
