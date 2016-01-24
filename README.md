@@ -136,5 +136,5 @@ console.log({
 
 ## Repositories
 
- - [Offical](https://github.com/ksxnodemodules/x-iterable-tree.git)
+ - [Offical](https://github.com/ksxnodemodules/x-iterable.git)
  - [Mirror](https://khai96_@bitbucket.org/khai96_/x-iterable.git)
