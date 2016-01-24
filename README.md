@@ -133,3 +133,8 @@ console.log({
 
 ## Documentation: User Manual, API References
  - [Documentation](https://github.com/ksxnodemodules/x-iterable-documentation)
+
+## Repositories
+
+ - Offical: https://github.com/ksxnodemodules/x-iterable-tree.git
+ - Mirror: https://khai96_@bitbucket.org/khai96_/x-iterable.git
