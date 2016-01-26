@@ -7,7 +7,7 @@
 	var boolean = require('simple-function-utils/boolean');
 	var createClass = require('./create-class.js');
 	var isIterable = require('./utils/is-iterable.js');
-	var _getfunc = require('./utils/getval').function;
+	var _getfunc = require('./utils/getval.js').function;
 	var Root = require('./root.js').class;
 
 	const EMPTY_ITERABLE = require('./utils/empty-iterable.js');
