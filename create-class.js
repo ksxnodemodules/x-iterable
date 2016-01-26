@@ -71,9 +71,7 @@
 			}
 
 			filter(callback) {
-				var result = new this.Array();
-				this.forEach((element) => callback(element, this) && result.push(element));
-				return result;
+				return this.Array.from(this.filterIterable(callback));
 			}
 
 			reduce(callback, init) {
