@@ -24,7 +24,7 @@
 			}
 
 			transform(callback) {
-				new createClass.AssignIterator(() => this.transformGenerator(callback));
+				return new createClass.AssignIterator(() => this.transformGenerator(callback));
 			}
 
 			* filterGenerator(callback) {
@@ -40,7 +40,7 @@
 			}
 
 			filterIterable(callback) {
-				new createClass.AssignIterator(() => this.filterGenerator(callback));
+				return new createClass.AssignIterator(() => this.filterGenerator(callback));
 			}
 
 			runthrough() {
