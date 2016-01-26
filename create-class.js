@@ -3,6 +3,8 @@
 	'use strict';
 
 	var createClassFromSuper = require('simple-class-utils').createClass.super;
+	var bind = require('simple-function-utils/bind').begin;
+	var _getfunc = require('./utils/getval.js').function;
 	var Root = require('./root.js').class;
 
 	var _key_iterator = Symbol.iterator;
@@ -140,6 +142,10 @@
 				}
 			}
 
+			has(element, equal) {
+				return this.some(bind(_getfunc(equal, this.has.DEFAULT_EQUAL), element));
+			}
+
 		}
 
 		((proto) => {
@@ -155,6 +161,8 @@
 
 			proto.spread.ITERABLES = (element, self) => new self.Array(...element);
 			proto.spread.DEFAULT_CALLBACK = proto.spread.ITERABLES;
+
+			proto.has.DEFAULT_EQUAL = Object.is;
 
 			var superproto = Object.getPrototypeOf(proto);
 
