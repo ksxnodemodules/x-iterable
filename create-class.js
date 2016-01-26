@@ -29,6 +29,24 @@
 				);
 			}
 
+			* filterGenerator(callback) {
+				for (let element of this) {
+					if (callback(element, this)) {
+						yield element;
+					}
+				}
+			}
+
+			filterOnceIterable(callback) {
+				return new createClass.Yield(this.filterGenerator(callback));
+			}
+
+			filterIterable(callback) {
+				return new createClass.Yield(
+					new createClass.AssignIterator(() => this.filterGenerator(callback))
+				);
+			}
+
 			runthrough() {
 				for (let gen = this[_key_iterator](); !gen.next().done; );
 			}
