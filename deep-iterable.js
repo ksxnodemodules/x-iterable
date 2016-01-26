@@ -7,6 +7,7 @@
 	var boolean = require('simple-function-utils/boolean');
 	var createClass = require('./create-class.js');
 	var isIterable = require('./utils/is-iterable.js');
+	var _getfunc = require('./utils/getval').function;
 	var Root = require('./root.js').class;
 
 	const EMPTY_ITERABLE = require('./utils/empty-iterable.js');
@@ -123,10 +124,5 @@
 		static DEFAULT_CIRCULAR_HANDLER() {}
 
 	});
-
-	var _getval = (type, first, ...second) =>
-		typeof first === type || !second.length ? first : _getval(type, ...second);
-
-	var _getfunc = bind(_getval, 'function');
 
 })(module);
