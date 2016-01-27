@@ -142,10 +142,6 @@
 				}
 			}
 
-			has(element, equal) {
-				return this.some(bind(_getfunc(equal, this.has.DEFAULT_EQUAL), element));
-			}
-
 		}
 
 		((proto) => {
@@ -162,7 +158,14 @@
 			proto.spread.ITERABLES = (element, self) => new self.Array(...element);
 			proto.spread.DEFAULT_CALLBACK = proto.spread.ITERABLES;
 
-			proto.has.DEFAULT_EQUAL = Object.is;
+			if (proto.has === undefined) {
+				Object.assign(proto, {
+					has(element, equal) {
+						return this.some(bind(_getfunc(equal, this.has.DEFAULT_EQUAL), element));
+					}
+				});
+				proto.has.DEFAULT_EQUAL = Object.is;
+			}
 
 			var superproto = Object.getPrototypeOf(proto);
 
