@@ -150,6 +150,7 @@
 
 			proto.search.Result = class extends Root {
 				constructor(value, object) {
+					super();
 					this.value = value;
 					this.object = object;
 				}
