@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="UTF-8">
+    <title>x-iterable by ksxnodemodules</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="stylesheets/normalize.css" media="screen">
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="stylesheets/github-light.css" media="screen">
+  </head>
+  <body>
+    <section class="page-header">
+      <h1 class="project-name">x-iterable</h1>
+      <h2 class="project-tagline">Extensible Iterable class creation utilities</h2>
+      <a href="https://github.com/ksxnodemodules/x-iterable" class="btn">View on GitHub</a>
+      <a href="https://github.com/ksxnodemodules/x-iterable/zipball/master" class="btn">Download .zip</a>
+      <a href="https://github.com/ksxnodemodules/x-iterable/tarball/master" class="btn">Download .tar.gz</a>
+    </section>
+
+    <section class="main-content">
+      <h1>
+<a id="extensible-iterable-class-utilities" class="anchor" href="#extensible-iterable-class-utilities" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Extensible Iterable class utilities</h1>
+
+<h2>
+<a id="requirements" class="anchor" href="#requirements" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Requirements</h2>
+
+<p>Node v5.0.0 or later</p>
+
+<ul>
+<li>Flag <code>--es-staging</code> is required</li>
+</ul>
+
+<h2>
+<a id="some-examples" class="anchor" href="#some-examples" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Some examples</h2>
+
+<ul>
+<li>Read <a href="https://github.com/ksxnodemodules/x-iterable-documentation">documentation</a> for more examples</li>
+</ul>
+
+<h3>
+<a id="for-requirex-iterablecreate-class" class="anchor" href="#for-requirex-iterablecreate-class" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>For <code>require('x-iterable/create-class')</code>
+</h3>
+
+<h4>
+<a id="create-an-extended-iterable-class-based-on-an-iterable-class" class="anchor" href="#create-an-extended-iterable-class-based-on-an-iterable-class" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Create an extended iterable class based on an iterable class</h4>
+
+<ul>
+<li><p>Function: <a href="https://github.com/ksxnodemodules/x-iterable-documentation/blob/master/references/create-class/readme.md"><code>createClass</code></a></p></li>
+<li><p>Usage: <code>createClass(optional class Super)</code></p></li>
+</ul>
+
+<div class="highlight highlight-source-js"><pre><span class="pl-k">var</span> createClass <span class="pl-k">=</span> <span class="pl-c1">require</span>(<span class="pl-s"><span class="pl-pds">'</span>x-iterable/create-class<span class="pl-pds">'</span></span>);
+<span class="pl-k">var</span> Iterable <span class="pl-k">=</span> <span class="pl-en">createClass</span>(Int8Array);
+<span class="pl-k">var</span> iterable <span class="pl-k">=</span> <span class="pl-k">new</span> <span class="pl-en">Iterable</span>([<span class="pl-c1">12</span>, <span class="pl-k">-</span><span class="pl-c1">4</span>, <span class="pl-c1">5</span>, <span class="pl-c1">66</span>, <span class="pl-c1">4</span>]);
+<span class="pl-k">var</span> strlist <span class="pl-k">=</span> <span class="pl-smi">iterable</span>.<span class="pl-en">map</span>(<span class="pl-c1">String</span>);
+<span class="pl-en">console</span>.<span class="pl-c1">log</span>(strlist);</pre></div>
+
+<h4>
+<a id="create-an-iterable-class-based-on-generator" class="anchor" href="#create-an-iterable-class-based-on-generator" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Create an iterable class based on generator</h4>
+
+<ul>
+<li><p>Function: <a href="https://github.com/ksxnodemodules/x-iterable-documentation/blob/master/references/create-class/readme.md#function-createclassfromgenerator"><code>createClass.fromGenerator</code></a></p></li>
+<li><p>Usage: <code>createClass.fromGenerator(function generator)</code></p></li>
+</ul>
+
+<div class="highlight highlight-source-js"><pre><span class="pl-k">var</span> createClass <span class="pl-k">=</span> <span class="pl-c1">require</span>(<span class="pl-s"><span class="pl-pds">'</span>x-iterable/create-class<span class="pl-pds">'</span></span>);
+<span class="pl-k">var</span> Iterable <span class="pl-k">=</span> <span class="pl-smi">createClass</span>.<span class="pl-en">fromGenerator</span>(<span class="pl-k">function</span> <span class="pl-k">*</span> () {
+    <span class="pl-k">yield</span> <span class="pl-k">*</span> <span class="pl-s"><span class="pl-pds">"</span>Hello, World!!<span class="pl-pds">"</span></span>;
+});
+<span class="pl-k">var</span> iterable <span class="pl-k">=</span> <span class="pl-k">new</span> <span class="pl-en">Iterable</span>();
+<span class="pl-k">for</span> (<span class="pl-k">let</span> element <span class="pl-k">of</span> iterable) {
+    <span class="pl-en">console</span>.<span class="pl-c1">log</span>(element); <span class="pl-c">// display each character of "Hello, World!!"</span>
+}</pre></div>
+
+<h3>
+<a id="for-requirex-iterableconcat-iterable" class="anchor" href="#for-requirex-iterableconcat-iterable" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>For <code>require('x-iterable/concat-iterable')</code>
+</h3>
+
+<h4>
+<a id="iterate-elements-of-array--string--set" class="anchor" href="#iterate-elements-of-array--string--set" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Iterate elements of array + string + set</h4>
+
+<div class="highlight highlight-source-js"><pre><span class="pl-k">var</span> ConcatIterable <span class="pl-k">=</span> <span class="pl-c1">require</span>(<span class="pl-s"><span class="pl-pds">'</span>x-iterable/concat-iterable<span class="pl-pds">'</span></span>);
+<span class="pl-k">var</span> concat <span class="pl-k">=</span> <span class="pl-k">new</span> <span class="pl-en">ConcatIterable</span>(
+    [<span class="pl-c1">0</span>, <span class="pl-c1">1</span>, <span class="pl-c1">2</span>, <span class="pl-c1">3</span>, <span class="pl-c1">4</span>, <span class="pl-c1">5</span>, <span class="pl-c1">6</span>, <span class="pl-c1">7</span>, <span class="pl-c1">8</span>, <span class="pl-c1">9</span>],
+    <span class="pl-s"><span class="pl-pds">'</span>abcdefghijklmnopqrstuvwxyz<span class="pl-pds">'</span></span>,
+    <span class="pl-k">new</span> <span class="pl-en">Set</span>(<span class="pl-s"><span class="pl-pds">'</span>Set<span class="pl-pds">'</span></span>)
+);
+<span class="pl-en">console</span>.<span class="pl-c1">log</span>(<span class="pl-c1">Array</span>.<span class="pl-en">from</span>(concat));</pre></div>
+
+<h3>
+<a id="for-requirex-iterabledeep-iterable" class="anchor" href="#for-requirex-iterabledeep-iterable" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>For <code>require('x-iterable/deep-iterable')</code>
+</h3>
+
+<h4>
+<a id="iterate-all-non-iterable-elements-of-an-array" class="anchor" href="#iterate-all-non-iterable-elements-of-an-array" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Iterate all non-iterable elements of an array</h4>
+
+<div class="highlight highlight-source-js"><pre><span class="pl-k">var</span> DeepIterable <span class="pl-k">=</span> <span class="pl-c1">require</span>(<span class="pl-s"><span class="pl-pds">'</span>x-iterable/deep-iterable<span class="pl-pds">'</span></span>);
+<span class="pl-k">var</span> deep <span class="pl-k">=</span> <span class="pl-k">new</span> <span class="pl-en">DeepIterable</span>([<span class="pl-c1">0</span>, <span class="pl-c1">1</span>, [[<span class="pl-c1">2</span>, <span class="pl-c1">3</span>, [[<span class="pl-c1">4</span>, <span class="pl-c1">5</span>], <span class="pl-c1">6</span>, <span class="pl-c1">7</span>]], <span class="pl-c1">8</span>, <span class="pl-c1">9</span>]]);
+<span class="pl-en">console</span>.<span class="pl-c1">log</span>(<span class="pl-c1">Array</span>.<span class="pl-en">from</span>(deep));</pre></div>
+
+<h3>
+<a id="for-requirex-iterableparallel-iterable" class="anchor" href="#for-requirex-iterableparallel-iterable" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>For <code>require('x-iterable/parallel-iterable')</code>
+</h3>
+
+<h4>
+<a id="iterate-many-iterables-simultaneously" class="anchor" href="#iterate-many-iterables-simultaneously" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Iterate many iterables simultaneously</h4>
+
+<p>Get <code>[[A[0], B[0], C[0], ...], [A[1], B[1], C[1], ...], [A[2], B[2], C[2], ...], ...]</code> where <code>A</code>, <code>B</code>, <code>C</code>, ... are iterable</p>
+
+<div class="highlight highlight-source-js"><pre><span class="pl-k">var</span> ParallelIterable <span class="pl-k">=</span> <span class="pl-c1">require</span>(<span class="pl-s"><span class="pl-pds">'</span>x-iterable/parallel-iterable<span class="pl-pds">'</span></span>);
+<span class="pl-k">var</span> parallel <span class="pl-k">=</span> <span class="pl-k">new</span> <span class="pl-en">ParallelIterable</span>(
+    <span class="pl-smi">ParallelIterable</span>.<span class="pl-c1">END_OF_FIRST</span>, <span class="pl-c">// end of A</span>
+    [<span class="pl-c1">0</span>, <span class="pl-c1">1</span>, <span class="pl-c1">2</span>, <span class="pl-c1">3</span>, <span class="pl-c1">4</span>, <span class="pl-c1">5</span>, <span class="pl-c1">6</span>, <span class="pl-c1">7</span>, <span class="pl-c1">8</span>, <span class="pl-c1">9</span>], <span class="pl-c">// A</span>
+    <span class="pl-s"><span class="pl-pds">'</span>abcdefghi<span class="pl-pds">'</span></span>, <span class="pl-c">// B</span>
+    <span class="pl-k">new</span> <span class="pl-en">Set</span>(<span class="pl-s"><span class="pl-pds">'</span>987654321<span class="pl-pds">'</span></span>) <span class="pl-c">// C</span>
+);
+<span class="pl-en">console</span>.<span class="pl-c1">log</span>(<span class="pl-c1">Array</span>.<span class="pl-en">from</span>(parallel));</pre></div>
+
+<h3>
+<a id="for-requirex-iterableproduct-iterable" class="anchor" href="#for-requirex-iterableproduct-iterable" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>For <code>require('x-iterable/product-iterable')</code>
+</h3>
+
+<h4>
+<a id="iterate-all-combinations-of-many-iterables" class="anchor" href="#iterate-all-combinations-of-many-iterables" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Iterate all combinations of many iterables</h4>
+
+<p>Get a sequence of all <code>[A[i], B[j], C[k], ...]</code> where <code>A</code>, <code>B</code>, <code>C</code>, ... are iterable</p>
+
+<div class="highlight highlight-source-js"><pre><span class="pl-k">var</span> ProductIterable <span class="pl-k">=</span> <span class="pl-c1">require</span>(<span class="pl-s"><span class="pl-pds">'</span>x-iterable/product-iterable<span class="pl-pds">'</span></span>);
+<span class="pl-k">var</span> product <span class="pl-k">=</span> <span class="pl-k">new</span> <span class="pl-en">ProductIterable</span>(
+    [<span class="pl-c1">0</span>, <span class="pl-c1">1</span>, <span class="pl-c1">2</span>, <span class="pl-c1">3</span>, <span class="pl-c1">4</span>, <span class="pl-c1">5</span>, <span class="pl-c1">6</span>, <span class="pl-c1">7</span>, <span class="pl-c1">8</span>, <span class="pl-c1">9</span>],
+    [<span class="pl-s"><span class="pl-pds">'</span>a<span class="pl-pds">'</span></span>, <span class="pl-s"><span class="pl-pds">'</span>b<span class="pl-pds">'</span></span>, <span class="pl-s"><span class="pl-pds">'</span>c<span class="pl-pds">'</span></span>, <span class="pl-s"><span class="pl-pds">'</span>d<span class="pl-pds">'</span></span>, <span class="pl-s"><span class="pl-pds">'</span>e<span class="pl-pds">'</span></span>, <span class="pl-s"><span class="pl-pds">'</span>f<span class="pl-pds">'</span></span>],
+    [<span class="pl-s"><span class="pl-pds">'</span>x<span class="pl-pds">'</span></span>, <span class="pl-s"><span class="pl-pds">'</span>y<span class="pl-pds">'</span></span>, <span class="pl-s"><span class="pl-pds">'</span>z<span class="pl-pds">'</span></span>].<span class="pl-en">map</span>(<span class="pl-c1">Symbol</span>)
+);
+<span class="pl-en">console</span>.<span class="pl-c1">log</span>(<span class="pl-c1">Array</span>.<span class="pl-en">from</span>(product));</pre></div>
+
+<h3>
+<a id="for-requirex-iterablespread-iterable" class="anchor" href="#for-requirex-iterablespread-iterable" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>For <code>require('x-iterable/spread-iterable')</code>
+</h3>
+
+<h4>
+<a id="iterate-children-of-children-of-an-iterable" class="anchor" href="#iterate-children-of-children-of-an-iterable" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Iterate children of children of an iterable</h4>
+
+<div class="highlight highlight-source-js"><pre><span class="pl-k">var</span> SpreadIterable <span class="pl-k">=</span> <span class="pl-c1">require</span>(<span class="pl-s"><span class="pl-pds">'</span>x-iterable/spread-iterable<span class="pl-pds">'</span></span>);
+<span class="pl-k">var</span> grandchildren <span class="pl-k">=</span> <span class="pl-k">new</span> <span class="pl-en">SpreadIterable</span>([
+    [<span class="pl-c1">23</span>, <span class="pl-c1">54</span>, <span class="pl-c1">23</span>, <span class="pl-c1">64</span>],
+    [<span class="pl-c1">11</span>, <span class="pl-c1">35</span>, <span class="pl-c1">66</span>, <span class="pl-c1">88</span>],
+    [<span class="pl-c1">42</span>, <span class="pl-c1">36</span>, <span class="pl-c1">22</span>, <span class="pl-c1">14</span>]
+]);
+<span class="pl-en">console</span>.<span class="pl-c1">log</span>(<span class="pl-c1">Array</span>.<span class="pl-en">from</span>(grandchildren));</pre></div>
+
+<h3>
+<a id="for-all" class="anchor" href="#for-all" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>For all</h3>
+
+<h4>
+<a id="find-min-max-of-an-iterable" class="anchor" href="#find-min-max-of-an-iterable" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Find min, max of an iterable</h4>
+
+<ul>
+<li>Method: <code>get Iterable::max</code>, <code>get Iterable::min</code>
+</li>
+</ul>
+
+<p><em>They're two applications of method <a href="https://github.com/ksxnodemodules/x-iterable-documentation/blob/master/references/create-class/x-iterable.md#method-most"><code>XIterable::most</code></a></em></p>
+
+<div class="highlight highlight-source-js"><pre><span class="pl-k">var</span> SubSet <span class="pl-k">=</span> <span class="pl-c1">require</span>(<span class="pl-s"><span class="pl-pds">'</span>x-iterable<span class="pl-pds">'</span></span>).<span class="pl-en">createClass</span>(<span class="pl-c1">Set</span>);
+<span class="pl-k">var</span> set <span class="pl-k">=</span> <span class="pl-k">new</span> <span class="pl-en">SubSet</span>([<span class="pl-c1">12</span>, <span class="pl-c1">3</span>, <span class="pl-k">-</span><span class="pl-c1">5</span>, <span class="pl-c1">6</span>, <span class="pl-c1">88</span>, <span class="pl-c1">1</span>]);
+<span class="pl-en">console</span>.<span class="pl-c1">log</span>({
+    min<span class="pl-k">:</span> <span class="pl-smi">set</span>.<span class="pl-smi">min</span>,
+    max<span class="pl-k">:</span> <span class="pl-smi">set</span>.<span class="pl-smi">max</span>
+});</pre></div>
+
+<h2>
+<a id="documentation-user-manual-api-references" class="anchor" href="#documentation-user-manual-api-references" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Documentation: User Manual, API References</h2>
+
+<ul>
+<li><a href="https://github.com/ksxnodemodules/x-iterable-documentation">Documentation</a></li>
+</ul>
+
+<h2>
+<a id="repositories" class="anchor" href="#repositories" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Repositories</h2>
+
+<ul>
+<li><a href="https://github.com/ksxnodemodules/x-iterable.git">Offical</a></li>
+<li><a href="https://khai96_@bitbucket.org/khai96_/x-iterable.git">Mirror</a></li>
+</ul>
+
+      <footer class="site-footer">
+        <span class="site-footer-owner"><a href="https://github.com/ksxnodemodules/x-iterable">x-iterable</a> is maintained by <a href="https://github.com/ksxnodemodules">ksxnodemodules</a>.</span>
+
+        <span class="site-footer-credits">This page was generated by <a href="https://pages.github.com">GitHub Pages</a> using the <a href="https://github.com/jasonlong/cayman-theme">Cayman theme</a> by <a href="https://twitter.com/jasonlong">Jason Long</a>.</span>
+      </footer>
+
+    </section>
+
+  
+  </body>
+</html>
