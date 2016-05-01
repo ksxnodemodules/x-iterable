@@ -7,7 +7,6 @@
 	var boolean = require('simple-function-utils/boolean');
 	var createClass = require('./create-class.js');
 	var isIterable = require('./utils/is-iterable.js');
-	var _getfunc = require('./utils/getval.js').function;
 	var Root = require('./root.js').class;
 
 	const EMPTY_ITERABLE = require('./utils/empty-iterable.js');
@@ -43,13 +42,13 @@
 
 	class DeepIterable extends PureDeepIterable {
 
-		constructor(base, deeper, shallower, preprocess) {
-			super(
-				base,
-				boolean.and(isIterable, _getfunc(deeper, DeepIterable.DEFAULT_DEEPER)),
-				_getfunc(shallower, DeepIterable.DEFAULT_SHALLOWER),
-				_getfunc(preprocess, DeepIterable.DEFAULT_PREPROCESS)
-			);
+		constructor(
+			base,
+			deeper = DeepIterable.DEFAULT_DEEPER,
+			shallower = DeepIterable.DEFAULT_SHALLOWER,
+			preprocess = DeepIterable.DEFAULT_PREPROCESS
+		) {
+			super(base, boolean.and(isIterable, deeper), shallower, preprocess);
 		}
 
 		circular(equal) {
@@ -92,21 +91,15 @@
 
 	DeepIterable.Circular = createClass(class extends Root {
 
-		constructor(base, deeper, equal, circular) {
+		constructor(base, deeper = DeepIterable.DEFAULT_DEEPER, equal = Object.is, circular = DeepIterable.DEFAULT_CIRCULAR_HANDLER) {
 			super();
-			this.base = base;
-			this.deeper = _getfunc(deeper, DeepIterable.DEFAULT_DEEPER);
-			this.equal = _getfunc(equal, Object.is);
-			this.circular = _getfunc(circular, DeepIterable.Circular.DEFAULT_CIRCULAR_HANDLER);
+			Object.assign(this, {base, deeper, equal, circular});
 		}
 
 		[_key_iterator]() {
 
 			var history = [];
-			var base = this.base;
-			var deeper = this.deeper;
-			var equal = this.equal;
-			var circular = this.circular;
+			var {base, deeper, equal, circular} = this;
 
 			return new DeepIterable(
 				base,

@@ -11,16 +11,16 @@
 
 	class ParallelIterable extends ParallelIterableSuper {
 
-		static END_OF_FIRST(elements) {
-			return elements[0].done;
+		static END_OF_FIRST([{done}]) {
+			return done;
 		}
 
 		static END_OF_SOME(elements) {
-			return elements.some((element) => element.done);
+			return elements.some(({done}) => done);
 		}
 
 		static END_OF_ALL(elements) {
-			return elements.every((element) => element.done);
+			return elements.every(({done}) => done);
 		}
 
 		static FOR_COUNT(count) {
@@ -64,7 +64,7 @@
 			if (this.stop(elements, this)) {
 				break;
 			} else {
-				yield elements.map((element) => element.value);
+				yield elements.map(({value}) => value);
 			}
 		}
 	}

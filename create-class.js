@@ -11,9 +11,9 @@
 
 	module.exports = createClass;
 
-	function createClass(Super, ...args) {
+	function createClass(Super = createClass.default, ...args) {
 
-		class XIterable extends (typeof Super === 'function' ? Super : createClass.default) {
+		class XIterable extends Super {
 
 			* transformGenerator(callback) {
 				for (let element of this) {

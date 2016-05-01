@@ -3,8 +3,7 @@
 
 ## Requirements
 
-Node v5.0.0 or later
- - Flag `--es-staging` is required
+ * Node >= 6.0.0
 
 ## Some examples
 
