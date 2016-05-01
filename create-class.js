@@ -4,7 +4,6 @@
 
 	var createClassFromSuper = require('simple-class-utils').createClass.super;
 	var bind = require('simple-function-utils/bind').begin;
-	var _getfunc = require('./utils/getval.js').function;
 	var Root = require('./root.js').class;
 
 	var _key_iterator = Symbol.iterator;
@@ -161,8 +160,8 @@
 
 			if (proto.has === undefined) {
 				Object.assign(proto, {
-					has(element, equal) {
-						return this.some(bind(_getfunc(equal, this.has.DEFAULT_EQUAL), element));
+					has(element, equal = this.equal.DEFAULT_EQUAL) {
+						return this.some(bind(equal, element));
 					}
 				});
 				proto.has.DEFAULT_EQUAL = Object.is;
