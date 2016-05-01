@@ -4,7 +4,7 @@
 
 	var createClassFromSuper = require('simple-class-utils').createClass.super;
 	var createClass = require('../create-class.js');
-	var Root = require('../root.js');
+	var Root = require('../root.js').class;
 
 	var _key_iterator = Symbol.iterator;
 
