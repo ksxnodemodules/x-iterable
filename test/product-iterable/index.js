@@ -14,8 +14,7 @@ function main() {
 
 	return {
 		'test-args': args,
-		'example': new TestResult(ProductIterable, args),
-		'create-x-iterable-class': require('./create-x-iterable-class.js')
+		'example': new TestResult(ProductIterable, args)
 	};
 
 }

@@ -10,7 +10,6 @@ function main() {
 	return {
 		'base': base,
 		'example': new TestResult(DeepIterable, [base]),
-		'create-x-iterable-class': require('./create-x-iterable-class.js'),
 		'circular': require('./circular.js')
 	};
 

@@ -15,8 +15,13 @@
 		"node": ">=6.0.0"
 	},
 	"dependencies": {
-		"simple-class-utils": ">=0.0.4 <2.0.0",
-		"simple-function-utils": ">=2.1.2 <3.0.0"
+		"x-iterable-base": ">=1.0.2 <2.0.0",
+		"concat-iterable": ">=1.0.0 <2.0.0",
+		"deep-iterable": ">=1.0.0 <2.0.0",
+		"parallel-iterable": ">=1.0.0 <2.0.0",
+		"product-iterable": ">=1.0.0 <2.0.0",
+		"spread-iterable": ">=1.0.0 <2.0.0",
+		"x-iterable-utils": "ksxnodemodules/x-iterable-utils#v0.0.0"
 	},
 	"main": "index.js",
 	"keywords": [

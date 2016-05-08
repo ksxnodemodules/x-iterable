@@ -9,8 +9,7 @@ function main() {
 
 	return {
 		'base': base,
-		'example': new TestResult(SpreadIterable, [base]),
-		'create-x-iterable-class': require('./create-x-iterable-class.js')
+		'example': new TestResult(SpreadIterable, [base])
 	};
 
 }
