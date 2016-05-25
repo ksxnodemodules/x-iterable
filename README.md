@@ -1,5 +1,9 @@
 
 # x-iterable
+
+[![dependencies status](https://david-dm.org/ksxnodemodules/x-iterable.svg)](https://david-dm.org/ksxnodemodules/x-iterable#info=dependencies)
+[![devDependencies status](https://david-dm.org/ksxnodemodules/x-iterable/dev-status.svg)](https://david-dm.org/ksxnodemodules/x-iterable#info=devDependencies)
+
 Sum up 6 packages: [x-iterable-base](https://www.npmjs.com/package/x-iterable-base), [concat-iterable](https://www.npmjs.com/package/concat-iterable), [deep-iterable](https://www.npmjs.com/package/deep-iterable), [parallel-iterable](https://www.npmjs.com/package/parallel-iterable), [product-iterable](https://www.npmjs.com/package/product-iterable), [spread-iterable](https://www.npmjs.com/package/spread-iterable)
 
 ## Requirements
