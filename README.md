@@ -1,5 +1,5 @@
 
-# x-iterable
+# Đã sửa
 
 [![dependencies status](https://david-dm.org/ksxnodemodules/x-iterable.svg)](https://david-dm.org/ksxnodemodules/x-iterable#info=dependencies)
 [![devDependencies status](https://david-dm.org/ksxnodemodules/x-iterable/dev-status.svg)](https://david-dm.org/ksxnodemodules/x-iterable#info=devDependencies)
