@@ -13,7 +13,8 @@
     }
 
     get object () {
-      return new this.class(...this.args)
+      const Test = this.class
+      return new Test(...this.args)
     }
 
     get array () {
