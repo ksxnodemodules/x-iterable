@@ -15,14 +15,14 @@
 		"node": ">=6.0.0"
 	},
 	"dependencies": {
-		"x-iterable-base": "^3.0.1",
-		"concat-iterable": "^2.0.0",
-		"deep-iterable": "^2.0.0",
-		"parallel-iterable": "^2.0.0",
-		"product-iterable": "^2.0.0",
-		"range-iterable": "^2.0.0",
-		"spread-iterable": "^2.0.0",
-		"x-iterable-utils": "ksxnodemodules/x-iterable-utils#v0.0.0"
+		"x-iterable-base": "^4.0.0",
+		"concat-iterable": "^3.0.0",
+		"deep-iterable": "^3.0.0",
+		"parallel-iterable": "^3.0.0",
+		"product-iterable": "^3.0.0",
+		"range-iterable": "^3.0.0",
+		"spread-iterable": "^3.0.0",
+		"x-iterable-utils": "ksxnodemodules/x-iterable-utils#v1.0.0"
 	},
 	"main": "index.js",
 	"keywords": [
