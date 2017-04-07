@@ -1,20 +1,19 @@
 
-function main() {
-	'use strict';
+function main () {
+  'use strict'
 
-	var ConcatIterable = require('x-iterable/concat-iterable.js');
-	var TestResult = require('../test-result.js');
+  var ConcatIterable = require('x-iterable/concat-iterable.js')
+  var TestResult = require('../test-result.js')
 
-	var args = [
+  var args = [
 		[0, 1, 2, 3, 4, 5, 6, 7, 8, 9],
-		"abcdefghijklmnopqrstuvwxyz"
-	];
+    'abcdefghijklmnopqrstuvwxyz'
+  ]
 
-	return {
-		'test-args': args,
-		'example': new TestResult(ConcatIterable, args)
-	};
-
+  return {
+    'test-args': args,
+    'example': new TestResult(ConcatIterable, args)
+  }
 }
 
-module.exports = main();
+module.exports = main()

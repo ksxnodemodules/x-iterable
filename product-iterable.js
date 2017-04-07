@@ -1,2 +1,2 @@
 
-module.exports = class extends require('product-iterable') {};
+module.exports = class extends require('product-iterable') {}

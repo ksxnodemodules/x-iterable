@@ -1,2 +1,2 @@
 
-module.exports = require('x-iterable-base/template');
+module.exports = require('x-iterable-base/template')

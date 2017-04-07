@@ -1,2 +1,2 @@
 
-module.exports = class extends require('spread-iterable') {};
+module.exports = class extends require('spread-iterable') {}

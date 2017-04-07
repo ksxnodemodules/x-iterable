@@ -1,2 +1,2 @@
 
-module.exports = class extends require('range-iterable') {};
+module.exports = class extends require('range-iterable') {}

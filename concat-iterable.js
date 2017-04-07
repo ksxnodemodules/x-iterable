@@ -1,2 +1,2 @@
 
-module.exports = class extends require('concat-iterable') {};
+module.exports = class extends require('concat-iterable') {}

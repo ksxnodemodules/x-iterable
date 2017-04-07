@@ -1,2 +1,2 @@
 
-module.exports = class extends require('parallel-iterable') {};
+module.exports = class extends require('parallel-iterable') {}

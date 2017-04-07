@@ -1,2 +1,2 @@
 
-module.exports = class extends require('deep-iterable') {};
+module.exports = class extends require('deep-iterable') {}
