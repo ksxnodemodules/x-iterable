@@ -27,7 +27,7 @@
     get commaSeparated () {
       return this.array.join(', ')
     }
-	}
+  }
 
   module.exports = require('x-iterable').createClass(TestResult)
 })(module)
