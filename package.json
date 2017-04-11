@@ -1,43 +1,43 @@
 {
-	"name": "x-iterable",
-	"description": "Extensible Iterable class creation utilities",
-	"version": "6.0.0",
-	"author": "Hoàng Văn Khải <hvksmr1996@gmail.com>",
-	"contributors": [
-		"Hoàng Văn Khải <hvksmr1996@gmail.com>"
-	],
-	"license": "MIT",
-	"repository": {
-		"type": "git",
-		"url": "git+https://github.com/ksxnodemodules/x-iterable.git"
-	},
-	"engines": {
-		"node": ">=6.0.0"
-	},
-	"dependencies": {
-		"x-iterable-base": "^4.0.0",
-		"concat-iterable": "^3.0.0",
-		"deep-iterable": "^3.0.0",
-		"parallel-iterable": "^3.0.0",
-		"product-iterable": "^3.0.0",
-		"range-iterable": "^3.0.0",
-		"spread-iterable": "^3.0.0",
-		"x-iterable-utils": "ksxnodemodules/x-iterable-utils#v1.0.0"
-	},
-	"main": "index.js",
-	"keywords": [
-		"iterator",
-		"iterable",
-		"x-iterator",
-		"x-iterable",
-		"extensible-iterator",
-		"extensible-iterable"
-	],
-	"bugs": {
-		"url": "https://github.com/ksxnodemodules/x-iterable/issues"
-	},
-	"homepage": "https://github.com/ksxnodemodules/x-iterable#readme",
-	"scripts": {
-		"test": "node --es-staging ./test/index.js"
-	}
+  "name": "x-iterable",
+  "description": "Extensible Iterable class creation utilities",
+  "version": "6.0.0",
+  "author": "Hoàng Văn Khải <hvksmr1996@gmail.com>",
+  "contributors": [
+    "Hoàng Văn Khải <hvksmr1996@gmail.com>"
+  ],
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ksxnodemodules/x-iterable.git"
+  },
+  "engines": {
+    "node": ">=6.0.0"
+  },
+  "dependencies": {
+    "x-iterable-base": "^4.0.0",
+    "concat-iterable": "^3.0.0",
+    "deep-iterable": "^3.0.0",
+    "parallel-iterable": "^3.0.0",
+    "product-iterable": "^3.0.0",
+    "range-iterable": "^3.0.0",
+    "spread-iterable": "^3.0.0",
+    "x-iterable-utils": "^1.0.1"
+  },
+  "main": "index.js",
+  "keywords": [
+    "iterator",
+    "iterable",
+    "x-iterator",
+    "x-iterable",
+    "extensible-iterator",
+    "extensible-iterable"
+  ],
+  "bugs": {
+    "url": "https://github.com/ksxnodemodules/x-iterable/issues"
+  },
+  "homepage": "https://github.com/ksxnodemodules/x-iterable#readme",
+  "scripts": {
+    "test": "node --es-staging ./test/index.js"
+  }
 }
